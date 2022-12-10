@@ -42,7 +42,7 @@ def start() :
     while continuer:
         
         if réponse_3 == "non" :
-            print("\n  Voici les règles du mémory : \n Le premier joueur retourne deux cartes. Si les images sont identiques, il gagne la paire constituée et rejoue. Si les images sont différentes, il les repose faces cachées là où elles étaient et c'est au joueur suivant de jouer. La partie est terminée lorsque toutes les cartes ont été assemblées par paires.\n")
+            print("\n  Voici les règles du mémory : \n vous retournez deux cartes. Si les symboles/images sont identiques, vous gagnez la paire constituée et rejouer. Si les symboles/images sont différentes, vous les reposez faces cachées là où elles étaient. La partie est terminée lorsque toutes les cartes ont été assemblées par paires.\n")
             pseudo = input("\n Quelle est votre pseudonyme jeune entrepreneur : ")
             print("\n  Que voulez vous comme difficulté ", pseudo," ?")
             difficulté = str(input("facile, normal ou difficile : "))
@@ -54,7 +54,7 @@ def start() :
 
         elif réponse_3 == "oui" :
             pseudo = input("\n Quelle est votre pseudonyme jeune entrepreneur : ")
-            print("\n  Que voulez vous comme difficulté ?", pseudo)
+            print("\n Que voulez vous comme difficulté ?", pseudo)
             difficulté = str(input("facile ou normal ou difficile : "))
             
             if difficulté == "facile" or difficulté == "normal" or difficulté == "difficil":
@@ -140,23 +140,29 @@ def choix_joueur(difficulter):
     """Choix colonne de jeu"""
     continuer = True 
     while continuer: # trouver un moyen pour prendre en compte les str pour éviter de faire des erreurs 
-        choix_colone = int(input("Choisi une colone : "))
-        choix_ligne = int(input("Choisi une ligne : "))
+        choix_colone1 = int(input("Choisi une colone : "))
+        choix_ligne1 = int(input("Choisi une ligne : "))
+        choix_colone2 = int(input("Choisi une colone : "))
+        choix_ligne2 = int(input("Choisi une ligne : "))
         
         if difficulter == "facile" :
-            if choix_colone >= 1 and choix_colone <= 4 and choix_ligne >= 1 and choix_ligne <= 3 : 
+            if choix_colone1 >= 1 and choix_colone1 <= 4 and choix_ligne1 >= 1 and choix_ligne1 <= 3 and choix_colone2 >= 1 and choix_colone2 <= 4 and choix_ligne2 >= 1 and choix_ligne2 <= 3 : 
                 continuer = False
             else:
                 answer()
         elif difficulter == "normal" :
-            if choix_colone >= 1 and choix_colone <= 5 and choix_ligne >= 1 and choix_ligne <= 4 : 
+            if choix_colone1 >= 1 and choix_colone1 <= 5 and choix_ligne1 >= 1 and choix_ligne1 <= 4 and choix_colone2 >= 1 and choix_colone2 <= 5 and choix_ligne2 >= 1 and choix_ligne2 <= 4 : 
                 continuer = False
             else:
                 answer()
         else :
-            if choix_colone >= 1 and choix_colone <= 6 and choix_ligne >= 1 and choix_ligne <= 5 : 
+            if choix_colone1 >= 1 and choix_colone1 <= 6 and choix_ligne1 >= 1 and choix_ligne1 <= 5 and choix_colone2 >= 1 and choix_colone2 <= 6 and choix_ligne2 >= 1 and choix_ligne2 <= 5 : 
                 continuer = False
             else:
                 answer()
         
-    return [choix_colone,choix_ligne]
+    return [choix_colone1,choix_ligne1,choix_colone2,choix_ligne2]
+
+def paires(choix_colone1,choix_ligne1,choix_colone2,choix_ligne2):
+    if 
+    
