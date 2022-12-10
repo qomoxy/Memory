@@ -58,7 +58,7 @@ def start() :
             print("\n  Que voulez vous comme difficulté ?", pseudo)
             difficulté = str(input("facile ou normal ou difficile : "))
             
-            if difficulté == "facile" or difficulté == "normal" or difficulté == "difficile":
+            if difficulté == "facile" or difficulté == "normal" or difficulté == "difficil":
                 continuer = False
                 
             else:
@@ -78,40 +78,62 @@ def palette_visuel(difficulté):
         Arrays_n = [["¤"]*5 for alt in range(4)]  #Il faut 10 paires
         return Arrays_n
 
-    elif difficulter == "difficile" :
+    else :
         Arrays_d = [["¤"]*7 for alt in range(5)]  #Il faut 17 paires + 1 symbole
         return Arrays_d
 
 
-def palette_signes():   #Maintenant c'est aléatoire mais il faut l'adapter avec la difficulté
+def palette_signes(difficulté):   #Maintenant c'est aléatoire mais il faut l'adapter avec la difficulté
     '''  '''
     index = 0
-    true_arrays = [[0]*5 for elt in range(4)]
-    list1 = [1,2,3,4,5,6,7,8,9,10]
-    list2 = [0]*20
+    
+    if difficulter == "facile" :
+        true_arrays = [[0]*4 for elt in range(3)]
+        list1 = [1,2,3,4,5,6]
+        limite = 5
+        list2 = [0]*(limite*2)
+        nb_lignes = 4
+        nb_colones = 3
+        
+    elif difficulter == "normal" :
+        true_arrays = [[0]*5 for elt in range(4)]
+        list1 = [1,2,3,4,5,6,7,8,9,10]
+        limite = 10
+        list2 = [0]*(limite*2)
+        nb_lignes = 5
+        nb_colones = 4
+        
+    else :
+        true_arrays = [[0]*7 for elt in range(5)]
+        list1 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+        limite = 18
+        list2 = [0]*17+1
+        nb_lignes = 7
+        nb_colones = 5
+        
     for alt in range(len(list2)):
         list2[alt] = list1[index]
         index += 1
-        if index > 9 :
+        if index = limite-1 :
             index = 0
     shuffle(list2)
     index = 0
-    for i in range(4):
-        for x in range(5):
+    for i in range(nb_lignes):
+        for x in range(nb_colones):
             true_arrays [i][x] = list2[index]
             index += 1
-            if index > 9:
+            if index > limite-1:
                index = 0
     shuffle(true_arrays)
     return true_arrays
 
-def affichage(vide):
+def affichage(palette_visuel):
     """Sert à afficher le tableau joueur"""
     res = ""
-    for i in range(len(vide)) :
+    for i in range(len(palette_visuel)) :
         res += "\n |"
-        for j in range(len(vide[0])):
-            res += vide[i][j]
+        for j in range(len(palette_visuel[0])):
+            res += palette_visuel[i][j]
             res += "|"
     return print(res)
 
@@ -133,7 +155,7 @@ def choix_joueur(difficulter):
                 continuer = False
             else:
                 answer()
-        elif difficulter == "difficile" :
+        else :
             if choix_colone >= 1 and choix_colone <= 6 and choix_ligne >= 1 and choix_ligne <= 5 : 
                 continuer = False
             else:
