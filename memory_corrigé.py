@@ -58,7 +58,7 @@ def start() :
             print("\n  Que voulez vous comme difficulté ?", pseudo)
             difficulté = str(input("facile ou normal ou difficile : "))
             
-            if difficulté == "facile" or difficulté == "normal" or difficulté == "difficil":
+            if difficulté == "facile" or difficulté == "normal" or difficulté == "difficile":
                 continuer = False
                 
             else:
@@ -116,15 +116,29 @@ def affichage(vide):
     return print(res)
 
 
-def choix_joueur():
+def choix_joueur(difficulter):
     """Choix colonne de jeu"""
     continuer = True 
     while continuer: # trouver un moyen pour prendre en compte les str pour éviter de faire des erreurs 
         choix_colone = int(input("Choisi une colone : "))
         choix_ligne = int(input("Choisi une ligne : "))
-        if choix_colone >= 1 and choix_colone <= 5 and choix_ligne >= 1 and choix_ligne >= 4 : #mettre en place paraport la diff
-            continuer = False
-        else:
-            answer()
+        
+        if difficulter == "facile" :
+            if choix_colone >= 1 and choix_colone <= 4 and choix_ligne >= 1 and choix_ligne <= 3 : 
+                continuer = False
+            else:
+                answer()
+        elif difficulter == "normal" :
+            if choix_colone >= 1 and choix_colone <= 5 and choix_ligne >= 1 and choix_ligne <= 4 : 
+                continuer = False
+            else:
+                answer()
+        elif difficulter == "difficile" :
+            if choix_colone >= 1 and choix_colone <= 6 and choix_ligne >= 1 and choix_ligne <= 5 : 
+                continuer = False
+            else:
+                answer()
+        
+            
         
     return [choix_colone,choix_ligne]
