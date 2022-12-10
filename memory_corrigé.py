@@ -1,13 +1,12 @@
 from random import *
 
-liste_symbole = ['⛾','⛳','✈','⛴','⛺','⛟','⛏','⛄','⛩','⛥','⚽','⛪','✂','➹']
+#liste_symbole = ['⛾','⛳','✈','⛴','⛺','⛟','⛏','⛄','⛩','⛥','⚽','⛪','✂','➹']
 
 def memory():
     ''''''
     start()
     palette_visuel(difficulté)
     
-
 def answer():
     """Affiche que la reponse effectué est impossible"""    
     print("\n ¡ Réponse Inaxetable ¡ \n")
@@ -60,7 +59,6 @@ def start() :
             
             if difficulté == "facile" or difficulté == "normal" or difficulté == "difficil":
                 continuer = False
-                
             else:
                 answer()
     return [difficulté, pseudo]
@@ -160,7 +158,5 @@ def choix_joueur(difficulter):
                 continuer = False
             else:
                 answer()
-        
-            
         
     return [choix_colone,choix_ligne]
