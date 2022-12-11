@@ -17,7 +17,7 @@ def start():
     continuer = True
     
     while continuer:
-        réponse = str(input("Bonjour à vous jeune entrepreneur, voulez vous joué à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
+        réponse = str(input("\nBonjour à vous jeune entrepreneur, voulez vous joué à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
         
         if réponse == "oui" :
             réponse_3 = str(input("\n Connaissez-vous les règles du mémory ? \noui ou non : "))
@@ -149,7 +149,7 @@ def choix_joueur(difficulter):
     return [choix_colone1,choix_ligne1]
 
 
-def caseChoisi(choixColonne, choixLigne, ) : #Afaire    
+def caseChoisi(choixColonne, choixLigne) : #Afaire    
     return "tmp"
 
 def paires(choix_colone1,choix_ligne1):  #Afaire
