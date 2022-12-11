@@ -6,25 +6,25 @@ def memory():
     '''Jeux du memory'''
     start()
     palette_visuel(difficulté)
-    
+        
 def answer():
-    """Affiche que la reponse effectué est impossible"""    
+    """Affiche que la reponse effectuée est impossible"""    
     print("\n ¡ Réponse Inaxetable ¡ \n")
 
-def start():
+def start() :
     """Discours du debut, reponse : [difficulter, pseudo]"""
     
     continuer = True
     
     while continuer:
-        réponse = str(input("\nBonjour à vous jeune entrepreneur, voulez vous joué à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
+        réponse = str(input("\nBonjour à vous jeune entrepreneur, voulez vous jouer à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
         
         if réponse == "oui" :
             réponse_3 = str(input("\n Connaissez-vous les règles du mémory ? \noui ou non : "))
             continuer = False
         
         elif réponse == "non" :
-            réponse_2 = str(input("\n Est-tu sûr jeune entrepreneur ?! \noui ou non : "))
+            réponse_2 = str(input("\n Es-tu sûr jeune entrepreneur ?! \noui ou non : "))
             continuer = False
         
         
@@ -35,7 +35,7 @@ def start():
                 print ("\n bah bouge de là sale chien !! \n\n")
                 continuer = True
                 
-            else:
+            else :
                 answer()
                 continuer = True
                
@@ -66,25 +66,24 @@ def start():
                 continuer = False
             else:
                 answer()
-        else:
+        
+        else :
             answer()
             continuer = True
-                
+        
     return [difficulté, pseudo]
 
-
 def palette_visuel(difficulter):
-    '''Créer un tableau de difficultter voulue pour qu'ils soit afficher'''  
+    '''Créer un tableau de difficultter voulue pour qu'ils soit afficher'''    
     if difficulter == "facile" :
         Arrays = [["¤"]*4 for alt in range(3)]  #Il faut 6 paires
     
     elif difficulter == "normal" :
-        Arrays= [["¤"]*5 for alt in range(4)]  #Il faut 10 paires
+        Arrays = [["¤"]*5 for alt in range(4)]  #Il faut 10 paires
 
     else :
-        Arrays = [["¤"]*7 for alt in range(5)]  #Il faut 17 paires + 1 symbole
+        Arrays = [["¤"]*7 for alt in range(5)]  #Il faut 17 paires + 1 symbole    
     return Arrays
-
 
 def paletteAleatoire(difficulter): 
     """Créer notre palette de départ en fonction de la difficulter choisie"""
@@ -110,7 +109,6 @@ def paletteAleatoire(difficulter):
     nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2) # Calcul des icons utiles
     trueArray = ["tmp"]*nombresIconesUtiles
     
-    
     for i in range(nombresIconesUtiles) :
         trueArray[i] = icones[i]
     
@@ -121,8 +119,7 @@ def paletteAleatoire(difficulter):
 
 
 def affichage(Arrays):
-    """Sert à afficher le tableau joueur"""
-    
+    """Sert à afficher le tableau joueur"""    
     res = ""
     for i in range(len(Arrays)) :
         res += "\n |"
@@ -161,20 +158,27 @@ def choix_joueur(difficulter):
                    
     return [choix_colone1,choix_ligne1,choix_colone2,choix_ligne2]
 
-
 def caseChoisi(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet) :
     """Affecte au jeux du joueur la case de la grille choisi, en fonction du tableau complet"""
-    tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][ChoixLigne1]
-    tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][ChoixLigne2]
+    tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne][ChoixLigne]
+    tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne][ChoixLigne]
     return tabJoueur
 
-def paires(choix_colone1,choix_ligne1): 
+def paires(choixColone1,choixLigne1,choixColone2,choixLigne2,tabComplet,tabJoueur,difficulter):
+    allPaires = []
+    if difficulter == "facile" :
+        paireATrouver = 6
+    elif difficulter == "normal" :
+        paireATrouver = 10
+    elif difficulter == "difficile" :
+        paireATrouver = 17
     
-    return "tmp"
-
-
-
-
-
-
-
+    continuer = True
+    while continuer :
+        if tabComplet[choixColone1][choixLigne1] == tabComplet[choixColone2][choixLigne2] :
+            allPaires += tabComplet[choixColone1][choixLigne1]
+            tabjoueur #mettre a jour le tabJoueur pour y voir la paire
+            if len(allPaires) == paireATrouver            
+                return "Gagné"
+            return tabJoueur
+            continuer = False
