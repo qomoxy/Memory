@@ -11,7 +11,7 @@ def answer():
     """Affiche que la reponse effectué est impossible"""    
     print("\n ¡ Réponse Inaxetable ¡ \n")
 
-def start() :
+def start():
     """Discours du debut, reponse : [difficulter, pseudo]"""
     
     continuer = True
@@ -33,6 +33,10 @@ def start() :
                 
             elif réponse_2 == "oui" :
                 print ("\n bah bouge de là sale chien !! \n\n")
+                continuer = True
+                
+            else:
+                answer()
                 continuer = True
                
         else :
@@ -62,6 +66,10 @@ def start() :
                 continuer = False
             else:
                 answer()
+        else:
+            answer()
+            continuer = True
+                
     return [difficulté, pseudo]
 
 
@@ -165,7 +173,11 @@ def caseChoisi(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur
 def paires(choix_colone1,choix_ligne1): #Afaire
     
     return "tmp"
+
+def affichage_in_game():
+    return "tmp"
     
+
 
 
 
