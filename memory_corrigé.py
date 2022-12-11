@@ -3,7 +3,7 @@ from random import *
 #liste_symbole = ['⛾','⛳','✈','⛴','⛺','⛟','⛏','⛄','⛩','⛥','⚽','⛪','✂','➹']
 
 def memory():
-    ''''''
+    '''Jeux du memory'''
     start()
     palette_visuel(difficulté)
     
@@ -11,7 +11,7 @@ def answer():
     """Affiche que la reponse effectué est impossible"""    
     print("\n ¡ Réponse Inaxetable ¡ \n")
 
-def start() :
+def start():
     """Discours du debut, reponse : [difficulter, pseudo]"""
     
     continuer = True
@@ -33,6 +33,7 @@ def start() :
                 
             elif réponse_2 == "oui" :
                 print ("\n bah bouge de là sale chien !! \n\n")
+                continuer = True  #si on trouve un autre moyen de recommencer sans bug ? Laisse le cette fois Quentin ou test tu verra que sans ça marche pas
                
         else :
             answer()
@@ -64,7 +65,7 @@ def start() :
     return [difficulté, pseudo]
 
 
-def palette_visuel(difficulté):
+def palette_visuel(difficulter):
     '''Créer un tableau de difficultter voulue pour qu'ils soit afficher'''
     difficulter = dif[0]
     
@@ -81,49 +82,35 @@ def palette_visuel(difficulté):
         return Arrays_d
 
 
-def palette_signes(difficulté):   #Maintenant c'est aléatoire mais il faut l'adapter avec la difficulté
-    '''  '''
-    index = 0
+def paletteAleatoire(difficulter):  #Equivalent palette_signes() mais qui fonctionne
+    """Créer notre palette de départ en fonction de la difficulter choisie"""
+    
+    nombresIconesUtiles = 0
+    icones = ['⛾','⛳','✈','⛴','⛺','⛟','⛏','⛄','⛩','⛥','⚽','⛪','✂','➹','a','b','c','d','e']
+    
     
     if difficulter == "facile" :
-        true_arrays = [[0]*4 for elt in range(3)]
-        list1 = [1,2,3,4,5,6]
-        limite = 5
-        list2 = [0]*(limite*2)
-        nb_lignes = 4
-        nb_colones = 3
+        colonnes = 4
+        lignes = 3
         
     elif difficulter == "normal" :
-        true_arrays = [[0]*5 for elt in range(4)]
-        list1 = [1,2,3,4,5,6,7,8,9,10]
-        limite = 10
-        list2 = [0]*(limite*2)
-        nb_lignes = 5
-        nb_colones = 4
-        
+        colonnes = 5
+        lignes = 4
+
     else :
-        true_arrays = [[0]*7 for elt in range(5)]
-        list1 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
-        limite = 18
-        list2 = [0]*17+1
-        nb_lignes = 7
-        nb_colones = 5
+        colonnes = 7
+        lignes = 5
         
-    for alt in range(len(list2)):
-        list2[alt] = list1[index]
-        index += 1
-        if index = limite-1 :
-            index = 0
-    shuffle(list2)
-    index = 0
-    for i in range(nb_lignes):
-        for x in range(nb_colones):
-            true_arrays [i][x] = list2[index]
-            index += 1
-            if index > limite-1:
-               index = 0
-    shuffle(true_arrays)
-    return true_arrays
+    
+    shuffle(icones) # Les icons sont placés aléatoirement
+    nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2) # Calcul des icons utiles
+    trueArray = ["tmp"]*nombresIconesUtiles
+    
+    for i in range(nombresIconesUtiles) :
+        trueArray[i] = icones[i]
+    
+    return trueArray
+
 
 def affichage(palette_visuel):
     """Sert à afficher le tableau joueur"""
@@ -139,30 +126,34 @@ def affichage(palette_visuel):
 def choix_joueur(difficulter):
     """Choix colonne de jeu"""
     continuer = True 
-    while continuer: # trouver un moyen pour prendre en compte les str pour éviter de faire des erreurs 
+    while continuer: 
         choix_colone1 = int(input("Choisi une colone : "))
         choix_ligne1 = int(input("Choisi une ligne : "))
-        choix_colone2 = int(input("Choisi une colone : "))
-        choix_ligne2 = int(input("Choisi une ligne : "))
         
         if difficulter == "facile" :
-            if choix_colone1 >= 1 and choix_colone1 <= 4 and choix_ligne1 >= 1 and choix_ligne1 <= 3 and choix_colone2 >= 1 and choix_colone2 <= 4 and choix_ligne2 >= 1 and choix_ligne2 <= 3 : 
+            if choix_colone1 >= 1 and choix_colone1 <= 4 and choix_ligne1 >= 1 and choix_ligne1 <= 3 : 
                 continuer = False
             else:
                 answer()
         elif difficulter == "normal" :
-            if choix_colone1 >= 1 and choix_colone1 <= 5 and choix_ligne1 >= 1 and choix_ligne1 <= 4 and choix_colone2 >= 1 and choix_colone2 <= 5 and choix_ligne2 >= 1 and choix_ligne2 <= 4 : 
+            if choix_colone1 >= 1 and choix_colone1 <= 5 and choix_ligne1 >= 1 and choix_ligne1 <= 4 : 
                 continuer = False
             else:
                 answer()
         else :
-            if choix_colone1 >= 1 and choix_colone1 <= 6 and choix_ligne1 >= 1 and choix_ligne1 <= 5 and choix_colone2 >= 1 and choix_colone2 <= 6 and choix_ligne2 >= 1 and choix_ligne2 <= 5 : 
+            if choix_colone1 >= 1 and choix_colone1 <= 6 and choix_ligne1 >= 1 and choix_ligne1 <= 5 : 
                 continuer = False
             else:
                 answer()
         
-    return [choix_colone1,choix_ligne1,choix_colone2,choix_ligne2]
+    return [choix_colone1,choix_ligne1]
 
-def paires(choix_colone1,choix_ligne1,choix_colone2,choix_ligne2):
-    if 
+
+def caseChoisi(choixColonne, choixLigne, ) : #Afaire    
+    return "tmp"
+
+def paires(choix_colone1,choix_ligne1):  #Afaire
+    return "tmp"
     
+
+
