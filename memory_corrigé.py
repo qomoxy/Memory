@@ -1,11 +1,32 @@
 from random import *
 
-#liste_symbole = ['⛾','⛳','✈','⛴','⛺','⛟','⛏','⛄','⛩','⛥','⚽','⛪','✂','➹']
+
+##desole si ya des fautes il est tard
 
 def memory():
     '''Jeux du memory'''
-    start()
-    palette_visuel(difficulté)
+    tmp = start()
+    difficulter = tmp[0]
+    pseudo = tmp[1]
+    tabJoueur = palette_visuel(difficulter)
+    tabComplet = paletteAleatoire(difficulter)
+    
+    waitWin = True
+    while waitWin :
+        affichage(tabJoueur)
+        tmp = choixJoueur(difficulter)
+        choixColonne1 = tmp[0]
+        choixLigne1 = tmp[1]
+        choixColonne2 = tmp[2]
+        choixLigne2 = tmp[3]
+        tabTmp = caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixColonne2)
+        affichage(tabTmp)
+        tmp = paires(choixColonne1,choixLigne1,choixColonne2,choixLigne2,tabComplet,tabJoueur,difficulter)
+        if tmp[0] == "Gagné" :
+            print("t'as win bb")
+            waitWin = False
+        tabJoueur = tmp[1]
+    affichage(tabJoueur)
         
 def answer():
     """Affiche que la reponse effectuée est impossible"""    
@@ -115,6 +136,8 @@ def paletteAleatoire(difficulter):
     trueArray += trueArray
     shuffle(trueArray)
     
+    ##transformer en tableau a 2 dimentions
+    
     return trueArray
 
 
@@ -129,7 +152,7 @@ def affichage(Arrays):
     return print(res)
 
 
-def choix_joueur(difficulter):
+def choixJoueur(difficulter):
     """Choix colonne de jeu"""
     continuer = True 
     while continuer:
@@ -158,7 +181,7 @@ def choix_joueur(difficulter):
                    
     return [choix_colone1,choix_ligne1,choix_colone2,choix_ligne2]
 
-def caseChoisi(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet) :
+def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet) :
     """Affecte au jeux du joueur la case de la grille choisi, en fonction du tableau complet"""
     tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1]
     tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2]
@@ -179,11 +202,11 @@ def paires(choixColone1,choixLigne1,choixColone2,choixLigne2,tabComplet,tabJoueu
             allPaires += tabComplet[choixColone1][choixLigne1]
             Arrays [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1]#mettre a jour le tabJoueur pour y voir la paire
             if len(allPaires) == paireATrouver :           
-                return "Gagné"
-            return tabJoueur
+                return ["Gagné", tabJoueur]
+            return ["non", tabJoueur]
             continuer = False
             
-def affichageInGame(Arrays,tabComplet,choixColone1,choixLigne1,choixColone2,choixLigne2):
+def affichageInGame(Arrays,tabComplet,choixColone1,choixLigne1,choixColone2,choixLigne2):  #ca sert a quoi ?
     Arrays [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1] #C'est index out of range
     Arrays [choixColone2][choixLigne2] = tabComplet[choixColone2][choixLigne2] #tabComplet n'est pas en cologne 
     res = ""
