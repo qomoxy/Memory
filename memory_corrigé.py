@@ -1,4 +1,3 @@
-
 from random import *
 
 #liste_symbole = ['⛾','⛳','✈','⛴','⛺','⛟','⛏','⛄','⛩','⛥','⚽','⛪','✂','➹']
@@ -161,8 +160,8 @@ def choix_joueur(difficulter):
 
 def caseChoisi(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet) :
     """Affecte au jeux du joueur la case de la grille choisi, en fonction du tableau complet"""
-    tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne][ChoixLigne]
-    tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne][ChoixLigne]
+    tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1]
+    tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2]
     return tabJoueur
 
 def paires(choixColone1,choixLigne1,choixColone2,choixLigne2,tabComplet,tabJoueur,difficulter):
