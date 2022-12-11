@@ -11,7 +11,7 @@ def answer():
     """Affiche que la reponse effectué est impossible"""    
     print("\n ¡ Réponse Inaxetable ¡ \n")
 
-def start():
+def start() :
     """Discours du debut, reponse : [difficulter, pseudo]"""
     
     continuer = True
@@ -33,7 +33,7 @@ def start():
                 
             elif réponse_2 == "oui" :
                 print ("\n bah bouge de là sale chien !! \n\n")
-                continuer = True  #si on trouve un autre moyen de recommencer sans bug ? Laisse le cette fois Quentin ou test tu verra que sans ça marche pas
+                continuer = True
                
         else :
             answer()
@@ -82,7 +82,7 @@ def palette_visuel(difficulter):
         return Arrays_d
 
 
-def paletteAleatoire(difficulter):  #Equivalent palette_signes() mais qui fonctionne
+def paletteAleatoire(difficulter): 
     """Créer notre palette de départ en fonction de la difficulter choisie"""
     
     nombresIconesUtiles = 0
@@ -109,6 +109,9 @@ def paletteAleatoire(difficulter):  #Equivalent palette_signes() mais qui foncti
     for i in range(nombresIconesUtiles) :
         trueArray[i] = icones[i]
     
+    trueArray += trueArray
+    shuffle(trueArray)
+    
     return trueArray
 
 
@@ -126,34 +129,44 @@ def affichage(palette_visuel):
 def choix_joueur(difficulter):
     """Choix colonne de jeu"""
     continuer = True 
-    while continuer: 
+    while continuer:
         choix_colone1 = int(input("Choisi une colone : "))
         choix_ligne1 = int(input("Choisi une ligne : "))
+        choix_colone2 = int(input("Choisi une colone : "))
+        choix_ligne2 = int(input("Choisi une ligne : "))
         
         if difficulter == "facile" :
-            if choix_colone1 >= 1 and choix_colone1 <= 4 and choix_ligne1 >= 1 and choix_ligne1 <= 3 : 
+            if choix_colone1 >= 1 and choix_colone1 <= 4 and choix_ligne1 >= 1 and choix_ligne1 <= 3 and choix_colone2 >= 1 and choix_colone2 <= 4 and choix_ligne2 >= 1 and choix_ligne2 <= 3 : 
                 continuer = False
             else:
                 answer()
         elif difficulter == "normal" :
-            if choix_colone1 >= 1 and choix_colone1 <= 5 and choix_ligne1 >= 1 and choix_ligne1 <= 4 : 
+            if choix_colone1 >= 1 and choix_colone1 <= 5 and choix_ligne1 >= 1 and choix_ligne1 <= 4 and choix_colone2 >= 1 and choix_colone2 <= 5 and choix_ligne2 >= 1 and choix_ligne2 <= 4 : 
                 continuer = False
             else:
                 answer()
-        else :
-            if choix_colone1 >= 1 and choix_colone1 <= 6 and choix_ligne1 >= 1 and choix_ligne1 <= 5 : 
+        elif difficulter == "difficile" :
+            if choix_colone1 >= 1 and choix_colone1 <= 6 and choix_ligne1 >= 1 and choix_ligne1 <= 5 and choix_colone2 >= 1 and choix_colone2 <= 6 and choix_ligne2 >= 1 and choix_ligne2 <= 5 : 
                 continuer = False
             else:
                 answer()
-        
-    return [choix_colone1,choix_ligne1]
+        elif choix_colone1 == choixcolone2 and choix_ligne1 == choix_ligne2 :
+            answer()
+                   
+    return [choix_colone1,choix_ligne1,choix_colone2,choix_ligne2]
 
 
-def caseChoisi(choixColonne, choixLigne) : #Afaire    
-    return "tmp"
+def caseChoisi(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet) :
+    """Affecte au jeux du joueur la case de la grille choisi, en fonction du tableau complet"""
+    tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne][ChoixLigne]
+    tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne][ChoixLigne]
+    return tabJoueur
 
-def paires(choix_colone1,choix_ligne1):  #Afaire
+def paires(choix_colone1,choix_ligne1): #Afaire
+    
     return "tmp"
     
+
+
 
 
