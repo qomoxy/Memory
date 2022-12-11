@@ -1,3 +1,4 @@
+
 from random import *
 
 #liste_symbole = ['⛾','⛳','✈','⛴','⛺','⛟','⛏','⛄','⛩','⛥','⚽','⛪','✂','➹']
@@ -177,8 +178,22 @@ def paires(choixColone1,choixLigne1,choixColone2,choixLigne2,tabComplet,tabJoueu
     while continuer :
         if tabComplet[choixColone1][choixLigne1] == tabComplet[choixColone2][choixLigne2] :
             allPaires += tabComplet[choixColone1][choixLigne1]
-            tabjoueur #mettre a jour le tabJoueur pour y voir la paire
-            if len(allPaires) == paireATrouver            
+            Arrays [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1]#mettre a jour le tabJoueur pour y voir la paire
+            if len(allPaires) == paireATrouver :           
                 return "Gagné"
             return tabJoueur
             continuer = False
+            
+def affichageInGame(Arrays,tabComplet,choixColone1,choixLigne1,choixColone2,choixLigne2):
+    Arrays [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1] #C'est index out of range
+    Arrays [choixColone2][choixLigne2] = tabComplet[choixColone2][choixLigne2] #tabComplet n'est pas en cologne 
+    res = ""
+    for i in range(len(Arrays)) : #il faut l'afficher avec les cartes retourner 
+        res += "\n |"
+        for j in range(len(Arrays[0])):
+            res += Arrays[i][j]
+            res += "|"
+    return print(res)
+    
+    
+
