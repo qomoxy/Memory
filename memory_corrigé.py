@@ -158,8 +158,8 @@ def choix_joueur(difficulter):
 
 def caseChoisi(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet) :
     """Affecte au jeux du joueur la case de la grille choisi, en fonction du tableau complet"""
-    tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne][ChoixLigne]
-    tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne][ChoixLigne]
+    tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][ChoixLigne1]
+    tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][ChoixLigne2]
     return tabJoueur
 
 def paires(choix_colone1,choix_ligne1): #Afaire
