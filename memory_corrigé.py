@@ -74,20 +74,16 @@ def start():
 
 
 def palette_visuel(difficulter):
-    '''Créer un tableau de difficultter voulue pour qu'ils soit afficher'''
-    difficulter = dif[0]
-    
+    '''Créer un tableau de difficultter voulue pour qu'ils soit afficher'''  
     if difficulter == "facile" :
-        Arrays_f = [["¤"]*4 for alt in range(3)]  #Il faut 6 paires
-        return Arrays_f
+        Arrays = [["¤"]*4 for alt in range(3)]  #Il faut 6 paires
     
     elif difficulter == "normal" :
-        Arrays_n = [["¤"]*5 for alt in range(4)]  #Il faut 10 paires
-        return Arrays_n
+        Arrays= [["¤"]*5 for alt in range(4)]  #Il faut 10 paires
 
     else :
-        Arrays_d = [["¤"]*7 for alt in range(5)]  #Il faut 17 paires + 1 symbole
-        return Arrays_d
+        Arrays = [["¤"]*7 for alt in range(5)]  #Il faut 17 paires + 1 symbole
+    return Arrays
 
 
 def paletteAleatoire(difficulter): 
@@ -114,6 +110,7 @@ def paletteAleatoire(difficulter):
     nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2) # Calcul des icons utiles
     trueArray = ["tmp"]*nombresIconesUtiles
     
+    
     for i in range(nombresIconesUtiles) :
         trueArray[i] = icones[i]
     
@@ -123,13 +120,14 @@ def paletteAleatoire(difficulter):
     return trueArray
 
 
-def affichage(palette_visuel):
+def affichage(Arrays):
     """Sert à afficher le tableau joueur"""
+    
     res = ""
-    for i in range(len(palette_visuel)) :
+    for i in range(len(Arrays)) :
         res += "\n |"
-        for j in range(len(palette_visuel[0])):
-            res += palette_visuel[i][j]
+        for j in range(len(Arrays[0])):
+            res += Arrays[i][j]
             res += "|"
     return print(res)
 
@@ -170,13 +168,11 @@ def caseChoisi(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur
     tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][ChoixLigne2]
     return tabJoueur
 
-def paires(choix_colone1,choix_ligne1): #Afaire
+def paires(choix_colone1,choix_ligne1): 
     
     return "tmp"
 
-def affichage_in_game():
-    return "tmp"
-    
+
 
 
 
