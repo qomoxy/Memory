@@ -128,17 +128,17 @@ def paletteAleatoire(difficulter):
     nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2) # Calcul des icones utiles
     trueArray = ["tmp"]*nombresIconesUtiles
     
+    
     for i in range(nombresIconesUtiles) :
         trueArray[i] = icones[i]
-    
+        
     trueArray += trueArray
     shuffle(trueArray)
     
     tabJoueur = [["a"]*colonnes for i in range(lignes)]
-    for i in range(): #pas fini
-        for j in range():
-            tabJoueur[i][j] = trueArray[lignes*i+j]
-    
+    for i in range(lignes): #fini et tester (marche pour toutes les difficultés)
+        for j in range(colonnes):
+            tabJoueur[i][j] = trueArray[colonnes*i+j]
     return tabJoueur
 
 
@@ -201,13 +201,13 @@ def paires(choixColone1,choixLigne1,choixColone2,choixLigne2,tabComplet,tabJoueu
     while continuer :
         if tabComplet[choixColone1][choixLigne1] == tabComplet[choixColone2][choixLigne2] :
             allPaires += tabComplet[choixColone1][choixLigne1]
-            Arrays [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1]#mettre a jour le tabJoueur pour y voir la paire
+            Arrays [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1] #mettre a jour le tabJoueur pour y voir la paire
             if len(allPaires) == paireATrouver :           
                 return ["Gagné", tabJoueur]
             return ["non", tabJoueur]
             continuer = False
             
-def affichageInGame(Arrays,tabComplet,choixColone1,choixLigne1,choixColone2,choixLigne2):  #ca sert a quoi ?
+def affichageInGame(Arrays,tabComplet,choixColone1,choixLigne1,choixColone2,choixLigne2):  #ca sert a quoi ? pour juste montrer les carte retourner par le joueur pendant le tour
     Arrays [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1] #C'est index out of range
     Arrays [choixColone2][choixLigne2] = tabComplet[choixColone2][choixLigne2] #tabComplet n'est pas en cologne 
     res = ""
@@ -217,6 +217,4 @@ def affichageInGame(Arrays,tabComplet,choixColone1,choixLigne1,choixColone2,choi
             res += Arrays[i][j]
             res += "|"
     return print(res)
-    
-    
-
+ 
