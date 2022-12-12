@@ -81,7 +81,7 @@ def start() :
             print("\n Que voulez vous comme difficulté ?", pseudo)
             difficulté = str(input("facile ou normal ou difficile : "))
             
-            if difficulté == "facile" or difficulté == "normal" or difficulté == "difficil":
+            if difficulté == "facile" or difficulté == "normal" or difficulté == "difficile":
                 continuer = False
             else:
                 answer()
