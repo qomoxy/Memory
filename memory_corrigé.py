@@ -24,9 +24,10 @@ def memory():
         tmp = paires(choixColonne1,choixLigne1,choixColonne2,choixLigne2,tabComplet,tabJoueur,difficulter)
         if tmp[0] == "Gagné" :
             print("t'as win bb")
+            affichage(tabJoueur)
             waitWin = False
         tabJoueur = tmp[1]
-    affichage(tabJoueur)
+        print("\n"*100)
         
 def answer():
     """Affiche que la reponse effectuée est impossible"""    
