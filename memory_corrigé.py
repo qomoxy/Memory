@@ -1,8 +1,5 @@
 from random import *
 
-
-##desole si ya des fautes il est tard
-
 def memory():
     '''Jeux du memory'''
     tmp = start()
