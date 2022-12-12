@@ -128,7 +128,7 @@ def paletteAleatoire(difficulter):
         
     
     shuffle(icones) # Les icons sont placés aléatoirement
-    nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2) # Calcul des icons utiles
+    nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2) # Calcul des icones utiles
     trueArray = ["tmp"]*nombresIconesUtiles
     
     for i in range(nombresIconesUtiles) :
@@ -137,9 +137,12 @@ def paletteAleatoire(difficulter):
     trueArray += trueArray
     shuffle(trueArray)
     
-    ##transformer en tableau a 2 dimentions
+    tabJoueur = [["a"]*colonnes for i in range(lignes)]
+    for i in range(): #pas fini
+        for j in range():
+            tabJoueur[i][j] = trueArray[lignes*i+j]
     
-    return trueArray
+    return tabJoueur
 
 
 def affichage(Arrays):
