@@ -16,7 +16,7 @@ def memory():
         choixLigne1 = tmp[1]
         choixColonne2 = tmp[2]
         choixLigne2 = tmp[3]
-        tabTmp = caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixColonne2)
+        tabTmp = caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixColonne2, tabJoueur, tabComplet) 
         affichage(tabTmp)
         tmp = paires(choixColonne1,choixLigne1,choixColonne2,choixLigne2,tabComplet,tabJoueur,difficulter)
         if tmp[0] == "Gagné" :
@@ -146,10 +146,10 @@ def affichage(Arrays):
     """Sert à afficher le tableau joueur"""    
     res = ""
     for i in range(len(Arrays)) :
-        res += "\n |"
+        res += "\n | "
         for j in range(len(Arrays[0])):
             res += Arrays[i][j]
-            res += "|"
+            res += " | "
     return print(res)
 
 
@@ -157,7 +157,7 @@ def choixJoueur(difficulter):
     """Choix colonne de jeu"""
     continuer = True 
     while continuer:
-        choix_colone1 = int(input("Choisi une colone : "))
+        choix_colone1 = int(input("\nChoisi une colone : "))
         choix_ligne1 = int(input("Choisi une ligne : "))
         choix_colone2 = int(input("Choisi une colone : "))
         choix_ligne2 = int(input("Choisi une ligne : "))
@@ -201,20 +201,9 @@ def paires(choixColone1,choixLigne1,choixColone2,choixLigne2,tabComplet,tabJoueu
     while continuer :
         if tabComplet[choixColone1][choixLigne1] == tabComplet[choixColone2][choixLigne2] :
             allPaires += tabComplet[choixColone1][choixLigne1]
-            Arrays [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1] #mettre a jour le tabJoueur pour y voir la paire
+            tabJoueur [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1] #mettre a jour le tabJoueur pour y voir la/les paire(s)
             if len(allPaires) == paireATrouver :           
                 return ["Gagné", tabJoueur]
             return ["non", tabJoueur]
             continuer = False
             
-def affichageInGame(Arrays,tabComplet,choixColone1,choixLigne1,choixColone2,choixLigne2):  #ca sert a quoi ? pour juste montrer les carte retourner par le joueur pendant le tour
-    Arrays [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1] #C'est index out of range
-    Arrays [choixColone2][choixLigne2] = tabComplet[choixColone2][choixLigne2] #tabComplet n'est pas en cologne 
-    res = ""
-    for i in range(len(Arrays)) : #il faut l'afficher avec les cartes retourner 
-        res += "\n |"
-        for j in range(len(Arrays[0])):
-            res += Arrays[i][j]
-            res += "|"
-    return print(res)
- 
