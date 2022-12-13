@@ -5,7 +5,7 @@ def memory():
     '''Jeux du memory'''
     tmp = start()
     difficulter = tmp[0]
-    pseudo = "bessastien"
+    pseudo = ""
     tabJoueur = palette_visuel(difficulter)
     tabComplet = paletteAleatoire(difficulter)
     print(tabComplet)
@@ -102,7 +102,7 @@ def start() :
         
     return [difficulté, pseudo]
 
-def palette_visuel(difficulter):
+def paletteJoueur(difficulter):
     '''Créer un tableau de difficultter voulue pour qu'ils soit afficher'''    
     if difficulter == "facile" :
         Arrays = [["¤"]*4 for alt in range(3)]  #Il faut 6 paires
@@ -114,7 +114,7 @@ def palette_visuel(difficulter):
         Arrays = [["¤"]*7 for alt in range(5)]  #Il faut 17 paires + 1 symbole    
     return Arrays
 
-def paletteAleatoire(difficulter): 
+def paletteCacher(difficulter): 
     """Créer notre palette de départ en fonction de la difficulter choisie"""
     
     nombresIconesUtiles = 0
@@ -152,14 +152,14 @@ def paletteAleatoire(difficulter):
     return tabJoueur
 
 
-def affichage(Arrays):
+def affichage(arrays):
     """Sert à afficher le tableau joueur"""    
     res = ""
-    for i in range(len(Arrays)) :
-        res += "\n | "
-        for j in range(len(Arrays[0])):
-            res += Arrays[i][j]
-            res += " | "
+    for i in range(len(arrays)) :
+        res += "\n |"
+        for j in range(len(arrays[0])):
+            res += arrays[i][j]
+            res += "|"
     return print(res)
 
 
@@ -167,34 +167,38 @@ def choixJoueur(difficulter):
     """Choix colonne de jeu en fonction de la difficulté"""
     continuer = True 
     while continuer:
-        choix_colone1 = int(input("\nChoisi une colone : ")) #afficher un pseudo ?
-        choix_ligne1 = int(input("Choisi une ligne : ")) #afficher un pseudo ?
-        choix_colone2 = int(input("Choisi une colone : ")) #afficher un pseudo ?
-        choix_ligne2 = int(input("Choisi une ligne : ")) #afficher un pseudo ?
+        choixColonne1 = int(input("\nChoisi une colone : ")) #afficher un pseudo ?
+        choixLigne1 = int(input("Choisi une ligne : ")) #afficher un pseudo ?
+        choixColonne2 = int(input("Choisi une colone : ")) #afficher un pseudo ?
+        choixLigne2 = int(input("Choisi une ligne : ")) #afficher un pseudo ?
         
-        if difficulter == "facile" :
-            if choix_colone1 >= 1 and choix_colone1 <= 4 and choix_ligne1 >= 1 and choix_ligne1 <= 3 and choix_colone2 >= 1 and choix_colone2 <= 4 and choix_ligne2 >= 1 and choix_ligne2 <= 3 : 
+        if choixColonne1 == choixColonne2 and choixLigne1 == choixLigne2 :
+            answer()
+            continuer=True
+        
+        elif difficulter == "facile" :
+            if choixColonne1 >= 1 and choixColonne1 <= 4 and choixLigne1 >= 1 and choixLigne1 <= 3 and choixColonne2 >= 1 and choixColonne2 <= 4 and choixLigne2 >= 1 and choixLigne2 <= 3 : 
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "normal" :
-            if choix_colone1 >= 1 and choix_colone1 <= 5 and choix_ligne1 >= 1 and choix_ligne1 <= 4 and choix_colone2 >= 1 and choix_colone2 <= 5 and choix_ligne2 >= 1 and choix_ligne2 <= 4 : 
+            if choixColonne1 >= 1 and choixColonne1 <= 5 and choixLigne1 >= 1 and choixLigne1 <= 4 and choixColonne2 >= 1 and choixColonne2 <= 5 and choixLigne2 >= 1 and choixLigne2 <= 4 : 
                 continuer = False
             else:
                 answer()
                 continuer=True
         elif difficulter == "difficile" :
-            if choix_colone1 >= 1 and choix_colone1 <= 6 and choix_ligne1 >= 1 and choix_ligne1 <= 5 and choix_colone2 >= 1 and choix_colone2 <= 6 and choix_ligne2 >= 1 and choix_ligne2 <= 5 : 
+            if choixColonne1 >= 1 and choixColonne1 <= 6 and choixLigne1 >= 1 and choixLigne1 <= 5 and choixColonne2 >= 1 and choixColonne2 <= 6 and choixLigne2 >= 1 and choixLigne2 <= 5 : 
                 continuer = False
             else:
                 answer()
                 continuer=True
-        elif choix_colone1 == choixcolone2 and choix_ligne1 == choix_ligne2 :
+        elif choixColonne1 == choixColonne2 and choixLigne1 == choixLigne2 :
             answer()
             continuer=True
                    
-    return [choix_colone1,choix_ligne1,choix_colone2,choix_ligne2]
+    return [choixColonne1,choixLigne1,choixColonne2,choixLigne2]
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet) :
     """Affecte au jeux du joueur la case de la grille choisi, en fonction du tableau complet"""
