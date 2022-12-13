@@ -12,10 +12,10 @@ def memory():
     while waitWin :
         affichage(tabJoueur)
         tmpChoix = choixJoueur(difficulter)
-        choixColonne1 = tmpChoix[0]
-        choixLigne1 = tmpChoix[1]
-        choixColonne2 = tmpChoix[2]
-        choixLigne2 = tmpChoix[3]
+        choixColonne1 = tmpChoix[0] - 1
+        choixLigne1 = tmpChoix[1] -1
+        choixColonne2 = tmpChoix[2] -1
+        choixLigne2 = tmpChoix[3] -1
         tabTmp = caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixColonne2, tabJoueur, tabComplet) 
         affichage(tabTmp)
         tmp = paires(choixColonne1,choixLigne1,choixColonne2,choixLigne2,tabComplet,tabJoueur,difficulter,allPaires)
