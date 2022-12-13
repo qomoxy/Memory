@@ -88,11 +88,11 @@ def palette_visuel(difficulter):
 def AfficherTableau(arrays):
 
     texteAffiche = '   '
-    for i in range(len(tab)):
+    for i in range(len(arrays)):
         texteAffiche += str(i) + '  '
     print(texteAffiche)
 
-    for i in range(len(tab)):
+    for i in range(len(arrays)):
         texteAffiche = ''
         for carte in tab[i]:
             texteAffiche += '|' + carte
