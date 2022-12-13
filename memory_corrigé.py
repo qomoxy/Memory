@@ -1,18 +1,21 @@
-import random as r
-import time as t
+from random import *
+from time import *
 
-cartes = ['🍀', '🌷', '🍊', '🍎', '🍒', '🍟', '⚽️',
-          '🎮', '🚀', '🚅', '🌌', '🐘', '🐶', '🐱', '🐤', '🌈', '👖', '👓']
-carteCachee = '❓'
+
+def memory():
+    '''Jeux du memory'''
+    return "tmp"
 
 
 def answer():
     """Affiche que la reponse effectuée est impossible"""
     print("\n ¡ Réponse Inaxetable ¡ \n")
 
+
 def start():
     """Discours du debut avec règle et pseudo, reponse : [difficulter, pseudo]"""
 
+    global reponse3
     continuer = True
 
     while continuer:
@@ -20,17 +23,17 @@ def start():
             "\nBonjour à vous jeune entrepreneur, voulez vous jouer à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
 
         if reponse == "oui":
-            reponse_3 = str(input("\n Connaissez-vous les règles du mémory ? \noui ou non : "))
+            reponse3 = str(input("\n Connaissez-vous les règles du mémory ? \noui ou non : "))
             continuer = False
 
         elif reponse == "non":
+            reponse2 = str(input("\n Es-tu sûr jeune entrepreneur ?! \noui ou non : "))
             continuer = False
-            reponse_2 = str(input("\n Es-tu sûr jeune entrepreneur ?! \noui ou non : "))
 
-            if reponse_2 == "non":
+            if reponse2 == "non":
                 continuer = True
 
-            elif reponse_2 == "oui":
+            elif reponse2 == "oui":
                 print("\n Tu fait quoi ici ?? \n\n")
                 continuer = True
 
@@ -45,7 +48,7 @@ def start():
 
     while continuer:
 
-        if reponse_3 == "non":
+        if reponse3 == "non":
             print(
                 "\n  Voici les règles du mémory : \n vous retournez deux cartes. Si les symboles/images sont identiques, vous gagnez la paire constituée et rejouer. Si les symboles/images sont différentes, vous les reposez faces cachées là où elles étaient. La partie est terminée lorsque toutes les cartes ont été assemblées par paires.\n")
             pseudo = input("\n Quelle est votre pseudonyme jeune entrepreneur : ")
@@ -57,7 +60,7 @@ def start():
             else:
                 answer()
 
-        elif reponse_3 == "oui":
+        elif reponse3 == "oui":
             pseudo = input("\n Quelle est votre pseudonyme jeune entrepreneur : ")
             print("\n Que voulez vous comme difficulté ?", pseudo)
             difficulter = str(input("facile ou normal ou difficile : "))
@@ -71,40 +74,27 @@ def start():
             answer()
             continuer = True
 
-    return [difficulter, pseudo]
+    return [difficulter,pseudo]
 
-def palette_visuel(difficulter):
-    '''Créer un tableau de difficultter voulue pour qu'ils soit afficher'''
+
+def paletteJoueur(difficulter):
+    """Créer un tableau de difficultter voulue pour qu'ils soit afficher"""
     if difficulter == "facile":
-        Arrays = [["❓"] * 4 for alt in range(3)]  # Il faut 6 paires
+        Arrays = [["¤"] * 4 for alt in range(3)]  # Il faut 6 paires
 
     elif difficulter == "normal":
-        Arrays = [["❓"] * 5 for alt in range(4)]  # Il faut 10 paires
+        Arrays = [["¤"] * 5 for alt in range(4)]  # Il faut 10 paires
 
     else:
-        Arrays = [["❓"] * 7 for alt in range(5)]  # Il faut 17 paires + 1 symbole
+        Arrays = [["¤"] * 7 for alt in range(5)]  # Il faut 17 paires + 1 symbole
     return Arrays
 
-def AfficherTableau(arrays):
-
-    texteAffiche = '   '
-    for i in range(len(arrays)):
-        texteAffiche += str(i) + '  '
-    print(texteAffiche)
-
-    for i in range(len(arrays)):
-        texteAffiche = ''
-        for carte in tab[i]:
-            texteAffiche += '|' + carte
-        print(str(i) + texteAffiche + '|')
 
 def paletteCacher(difficulter):
     """Créer notre palette de départ en fonction de la difficulter choisie"""
 
     nombresIconesUtiles = 0
-    icones =['🍀', '🌷', '🍊', '🍎', '🍒', '🍟', '⚽️',
-          '🎮', '🚀', '🚅', '🌌', '🐘', '🐶', '🐱', '🐤', '🌈', '👖', '👓']
-
+    icones = ['⛾', '⛳', '✈', '⛴', '⛺', '⛟', '⛏', '⛄', '⛩', '⛥', '⚽', '⛪', '✂', '➹', 'a', 'b', 'c', 'd', 'e']
 
     if difficulter == "facile":
         colonnes = 4
@@ -134,14 +124,26 @@ def paletteCacher(difficulter):
             tabJoueur[i][j] = trueArray[colonnes * i + j]
     return tabJoueur
 
+
+def affichage(arrays):
+    """Sert à afficher le tableau joueur"""
+    res = ""
+    for i in range(len(arrays)):
+        res += "\n |"
+        for j in range(len(arrays[0])):
+            res += arrays[i][j]
+            res += "|"
+    return print(res)
+
+
 def choixJoueur(difficulter):
     """Choix colonne de jeu en fonction de la difficulté"""
     continuer = True
     while continuer:
-        choixColonne1 = int(input("\nChoisi une colone : "))  # afficher un pseudo ?
-        choixLigne1 = int(input("Choisi une ligne : "))  # afficher un pseudo ?
-        choixColonne2 = int(input("Choisi une colone : "))  # afficher un pseudo ?
-        choixLigne2 = int(input("Choisi une ligne : "))  # afficher un pseudo ?
+        choixColonne1 = int(input("\nChoisi une colone : "))
+        choixLigne1 = int(input("Choisi une ligne : "))
+        choixColonne2 = int(input("Choisi une colone : "))
+        choixLigne2 = int(input("Choisi une ligne : "))
 
         if choixColonne1 == choixColonne2 and choixLigne1 == choixLigne2:
             answer()
@@ -168,18 +170,42 @@ def choixJoueur(difficulter):
 
     return [choixColonne1, choixLigne1, choixColonne2, choixLigne2]
 
+
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeux du joueur la case de la grille choisi, en fonction du tableau complet"""
-    if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤":
+    if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤": #si cest deja en paire
         answer()
         caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet)
     tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1]
     tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2]
     return tabJoueur
 
-def CartesPareilles(choix, tableauBase):
-    return tableauBase[choix[0][0]][choix[0][1]] == tableauBase[choix[1][0]][choix[1][1]]
 
-def ChangerTableauJoueur(choix, carte, tableauJoueur):
-    tableauJoueur[choix[0][0]][choix[0][1]] = carte
-    tableauJoueur[choix[1][0]][choix[1][1]] = carte
+def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tabJoueur, difficulter,allPaires):  # marche pas -> pour test : paires(1,1,2,2,[['⛾','⛳','✈','⛴'],['⛾','⛳','✈','⛴'],['⛩','⛥','⚽','⛪'],['⛩','⛥','⚽','⛪']],[['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤']],"facile",0)
+    """
+    Permet de determiner si les case choisies par le joueur sont paires
+    En prenant en compte la difficulté
+    """
+    if difficulter == "facile":
+        paireATrouver = 6
+    elif difficulter == "normal":
+        paireATrouver = 10
+    elif difficulter == "difficile":
+        paireATrouver = 17
+
+    continuer = True
+    while continuer:
+        if tabComplet[choixColone1][choixLigne1] == tabComplet[choixColone2][choixLigne2]:
+            allPaires += 1
+            tabJoueur[choixColone1][choixLigne1] = tabComplet[choixColone1][
+                choixLigne1]  # mettre a jour le tabJoueur pour y voir la/les paire(s)
+            tabJoueur[choixColone2][choixLigne2] = tabComplet[choixColone2][choixLigne2]
+            if allPaires == paireATrouver:
+                return ["Gagné", tabJoueur]
+                continuer = False
+        else:
+            tabJoueur[choixColone2][choixLigne2] = "¤"
+            tabJoueur[choixColone1][choixLigne1] = "¤"
+        return ["non", tabJoueur, allPaires]
+
+
