@@ -4,7 +4,20 @@ from time import *
 
 def memory():
     '''Jeux du memory'''
-    return "tmp"
+    s = start()
+    difficulter = s[0]
+    pseudo = s[1]
+    tabJoueur = paletteJoueur(difficulter)
+    tabCacher = paletteCacher(difficulter)
+    
+    continuer = True
+    while continuer :
+        affichage(tabJoueur)
+        choices = choixJoueur(difficulter)
+        
+        
+    
+    
 
 
 def answer():
@@ -15,7 +28,6 @@ def answer():
 def start():
     """Discours du debut avec règle et pseudo, reponse : [difficulter, pseudo]"""
 
-    global reponse3
     continuer = True
 
     while continuer:
@@ -80,14 +92,14 @@ def start():
 def paletteJoueur(difficulter):
     """Créer un tableau de difficultter voulue pour qu'ils soit afficher"""
     if difficulter == "facile":
-        Arrays = [["¤"] * 4 for alt in range(3)]  # Il faut 6 paires
+        arrays = [["¤"] * 4 for alt in range(3)]  # Il faut 6 paires
 
     elif difficulter == "normal":
-        Arrays = [["¤"] * 5 for alt in range(4)]  # Il faut 10 paires
+        arrays = [["¤"] * 5 for alt in range(4)]  # Il faut 10 paires
 
     else:
-        Arrays = [["¤"] * 7 for alt in range(5)]  # Il faut 17 paires + 1 symbole
-    return Arrays
+        arrays = [["¤"] * 7 for alt in range(5)]  # Il faut 17 paires + 1 symbole
+    return arrays
 
 
 def paletteCacher(difficulter):
@@ -168,24 +180,26 @@ def choixJoueur(difficulter):
                 answer()
                 continuer = True
 
-    return [choixColonne1, choixLigne1, choixColonne2, choixLigne2]
+    return [[choixColonne1, choixLigne1, choixColonne2, choixLigne2]]
 
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeux du joueur la case de la grille choisi, en fonction du tableau complet"""
-    if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤": #si cest deja en paire
+    if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤": #verifie si cest deja en paire
         answer()
         caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet)
-    tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1]
-    tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2]
+    tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1] #affecte la case choisie
+    tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2] #affecte la case choisie
     return tabJoueur
 
 
-def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tabJoueur, difficulter,allPaires):  # marche pas -> pour test : paires(1,1,2,2,[['⛾','⛳','✈','⛴'],['⛾','⛳','✈','⛴'],['⛩','⛥','⚽','⛪'],['⛩','⛥','⚽','⛪']],[['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤']],"facile",0)
+def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tabJoueur, difficulter, allPaires,):  # marche pas -> pour test : paires(1,1,2,2,[['⛾','⛳','✈','⛴'],['⛾','⛳','✈','⛴'],['⛩','⛥','⚽','⛪'],['⛩','⛥','⚽','⛪']],[['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤']],"facile",0)
     """
     Permet de determiner si les case choisies par le joueur sont paires
     En prenant en compte la difficulté
-    """
+    """   
+    paires = AllPaires
+    
     if difficulter == "facile":
         paireATrouver = 6
     elif difficulter == "normal":
@@ -195,17 +209,8 @@ def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tab
 
     continuer = True
     while continuer:
-        if tabComplet[choixColone1][choixLigne1] == tabComplet[choixColone2][choixLigne2]:
-            allPaires += 1
-            tabJoueur[choixColone1][choixLigne1] = tabComplet[choixColone1][
-                choixLigne1]  # mettre a jour le tabJoueur pour y voir la/les paire(s)
-            tabJoueur[choixColone2][choixLigne2] = tabComplet[choixColone2][choixLigne2]
-            if allPaires == paireATrouver:
-                return ["Gagné", tabJoueur]
-                continuer = False
-        else:
-            tabJoueur[choixColone2][choixLigne2] = "¤"
-            tabJoueur[choixColone1][choixLigne1] = "¤"
-        return ["non", tabJoueur, allPaires]
-
-
+        if tabComplet(choixColone1,choixLigne1) == tabComplet(choixColone2,choixLigne2) :
+            tabJoueur(choixColone1,choixLigne1) = tabComplet(choixColone2,choixLigne2)
+            tabJoueur(choixColone1,choixLigne1) = tabComplet(choixColone2,choixLigne2)
+            paires += 1
+        return [tabJoueur,paires]
