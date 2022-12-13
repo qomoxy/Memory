@@ -7,6 +7,7 @@ def memory():
     pseudo = "bessastien"
     tabJoueur = palette_visuel(difficulter)
     tabComplet = paletteAleatoire(difficulter)
+    allPaires = 0
     
     waitWin = True
     while waitWin :
@@ -18,6 +19,8 @@ def memory():
         choixLigne2 = tmpChoix[3] -1
         tabTmp = caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixColonne2, tabJoueur, tabComplet) 
         affichage(tabTmp)
+        print("\n"*50)
+        print(tabTmp)
         tmp = paires(choixColonne1,choixLigne1,choixColonne2,choixLigne2,tabComplet,tabJoueur,difficulter,allPaires)
         if tmp[0] == "Gagné" :
             print("Ouahhhh T'as gagné ", pseudo," !!!!")
@@ -26,6 +29,7 @@ def memory():
         else :
             tabJoueur = tmp[1]
             allPaires = tmp[2]
+            
         
     
         
@@ -214,5 +218,5 @@ def paires(choixColone1,choixLigne1,choixColone2,choixLigne2,tabComplet,tabJoueu
             tabJoueur [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1] #mettre a jour le tabJoueur pour y voir la/les paire(s)
             if allPaires == paireATrouver :           
                 return ["Gagné", tabJoueur]
-            return ["non", tabJoueur, Allpaires]
-            continuer = False
+                continuer = False           
+        return ["non", tabJoueur, allPaires]           
