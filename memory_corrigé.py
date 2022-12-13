@@ -4,18 +4,29 @@ from time import *
 
 def memory():
     '''Jeux du memory'''
+    
+    allPaires = 0
     s = start()
     difficulter = s[0]
     pseudo = s[1]
     tabJoueur = paletteJoueur(difficulter)
     tabCacher = paletteCacher(difficulter)
     
-    continuer = True
-    while continuer :
-        affichage(tabJoueur)
-        choices = choixJoueur(difficulter)
+    while win(allPaire,difficulter) : # continue tant que le joueur n'a pas gagné 
+        affichage(tabJoueur) #affiche le tableau avec les paires retournées si yen a
+        choices = choixJoueur(difficulter) #demande au joueur ses choix pour retourner les cartes
+        colonne1 = choices[0]
+        ligne1 = choices[1]
+        colonne2 = choices[2]
+        ligne2 = choices[3]
+        print(visualisation 7s:)
+        affichage(colonne1,ligne1,colonne1,ligne1,tabJoueur,tabCacher) #affiche ses choix au joueur 
+        sleep(7) #patiente 7 secondes 
+        print("\n"*50)
         
-        
+        p = paires(colonne1,ligne1,colonne2,ligne2,tabComplet,tabJoueur,allPaires)
+        tabJoueur = p[0]
+        allPaires = p[1]
     
     
 
@@ -137,11 +148,13 @@ def paletteCacher(difficulter):
     return tabJoueur
 
 
-def affichage(arrays):
+def affichage(arrays): # pas tester, chiffres afficher sur le côté 
     """Sert à afficher le tableau joueur"""
     res = ""
     for i in range(len(arrays)):
-        res += "\n |"
+        res += "\n"
+        res += i
+        res += "|"
         for j in range(len(arrays[0])):
             res += arrays[i][j]
             res += "|"
@@ -193,19 +206,12 @@ def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueu
     return tabJoueur
 
 
-def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tabJoueur, difficulter, allPaires,):  # marche pas -> pour test : paires(1,1,2,2,[['⛾','⛳','✈','⛴'],['⛾','⛳','✈','⛴'],['⛩','⛥','⚽','⛪'],['⛩','⛥','⚽','⛪']],[['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤']],"facile",0)
+def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tabJoueur, difficulter, allPaires):  # marche pas -> pour test : paires(1,1,2,2,[['⛾','⛳','✈','⛴'],['⛾','⛳','✈','⛴'],['⛩','⛥','⚽','⛪'],['⛩','⛥','⚽','⛪']],[['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤']],"facile",0)
     """
     Permet de determiner si les case choisies par le joueur sont paires
     En prenant en compte la difficulté
     """   
     paires = AllPaires
-    
-    if difficulter == "facile":
-        paireATrouver = 6
-    elif difficulter == "normal":
-        paireATrouver = 10
-    elif difficulter == "difficile":
-        paireATrouver = 17
 
     continuer = True
     while continuer:
@@ -214,3 +220,19 @@ def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tab
             tabJoueur(choixColone1,choixLigne1) = tabComplet(choixColone2,choixLigne2)
             paires += 1
         return [tabJoueur,paires]
+        
+def win(paires,difficulter):
+    
+    while paireATrouver != None :
+        if difficulter == "facile":
+            paireATrouver = 6
+        elif difficulter == "normal":
+            paireATrouver = 10
+        elif difficulter == "difficile":
+            paireATrouver = 17
+    
+    if paires == paireATrouver :
+        return False
+    return True
+        
+    
