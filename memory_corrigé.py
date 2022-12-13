@@ -3,7 +3,7 @@ from time import *
 
 
 def memory():
-    '''Jeux du memory'''
+    """Jeux du memory"""
     
     allPaires = 0
     s = start()
@@ -19,7 +19,7 @@ def memory():
         ligne1 = choices[1]
         colonne2 = choices[2]
         ligne2 = choices[3]
-        print(visualisation 7s:)
+        print("visualisation 7s:")
         affichage(colonne1,ligne1,colonne1,ligne1,tabJoueur,tabCacher) #affiche ses choix au joueur 
         sleep(7) #patiente 7 secondes 
         print("\n"*50)
@@ -175,19 +175,19 @@ def choixJoueur(difficulter):
             continuer = True
 
         elif difficulter == "facile":
-            if choixColonne1 >= 1 and choixColonne1 <= 4 and choixLigne1 >= 1 and choixLigne1 <= 3 and choixColonne2 >= 1 and choixColonne2 <= 4 and choixLigne2 >= 1 and choixLigne2 <= 3:
+            if choixColonne1 >= 0 and choixColonne1 <= 3 and choixLigne1 >= 0 and choixLigne1 <= 2 and choixColonne2 >= 0 and choixColonne2 <= 3 and choixLigne2 >= 0 and choixLigne2 <= 2:
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "normal":
-            if choixColonne1 >= 1 and choixColonne1 <= 5 and choixLigne1 >= 1 and choixLigne1 <= 4 and choixColonne2 >= 1 and choixColonne2 <= 5 and choixLigne2 >= 1 and choixLigne2 <= 4:
+            if choixColonne1 >= 0 and choixColonne1 <= 4 and choixLigne1 >= 0 and choixLigne1 <= 3 and choixColonne2 >= 0 and choixColonne2 <= 4 and choixLigne2 >= 0 and choixLigne2 <= 3:
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "difficile":
-            if choixColonne1 >= 1 and choixColonne1 <= 6 and choixLigne1 >= 1 and choixLigne1 <= 5 and choixColonne2 >= 1 and choixColonne2 <= 6 and choixLigne2 >= 1 and choixLigne2 <= 5:
+            if choixColonne1 >= 0 and choixColonne1 <= 5 and choixLigne1 >= 0 and choixLigne1 <= 4 and choixColonne2 >= 0 and choixColonne2 <= 5 and choixLigne2 >= 0 and choixLigne2 <= 4:
                 continuer = False
             else:
                 answer()
@@ -211,15 +211,14 @@ def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tab
     Permet de determiner si les case choisies par le joueur sont paires
     En prenant en compte la difficulté
     """   
-    paires = AllPaires
-
-    continuer = True
-    while continuer:
-        if tabComplet(choixColone1,choixLigne1) == tabComplet(choixColone2,choixLigne2) :
-            tabJoueur(choixColone1,choixLigne1) = tabComplet(choixColone2,choixLigne2)
-            tabJoueur(choixColone1,choixLigne1) = tabComplet(choixColone2,choixLigne2)
-            paires += 1
-        return [tabJoueur,paires]
+    paires = allPaires
+    #entre la 
+    if tabComplet(choixColone1,choixLigne1) == tabComplet(choixColone2,choixLigne2) : #erreur la 
+        tabJoueur(choixColone1,choixLigne1) = tabComplet(choixColone1,choixLigne1)
+        tabJoueur(choixColone2,choixLigne2) = tabComplet(choixColone2,
+    #et la 
+        paires += 1
+    return [tabJoueur,paires]
         
 def win(paires,difficulter):
     
@@ -234,5 +233,3 @@ def win(paires,difficulter):
     if paires == paireATrouver :
         return False
     return True
-        
-    
