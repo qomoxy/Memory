@@ -1,4 +1,5 @@
 from random import *
+from time import *
 
 def memory():
     '''Jeux du memory'''
@@ -7,6 +8,7 @@ def memory():
     pseudo = "bessastien"
     tabJoueur = palette_visuel(difficulter)
     tabComplet = paletteAleatoire(difficulter)
+    print(tabComplet)
     allPaires = 0
     
     waitWin = True
@@ -19,8 +21,9 @@ def memory():
         choixLigne2 = tmpChoix[3] -1
         tabTmp = caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixColonne2, tabJoueur, tabComplet) 
         affichage(tabTmp)
+        print("visualisation 10s")
+        sleep(5)
         print("\n"*50)
-        print(tabTmp)
         tmp = paires(choixColonne1,choixLigne1,choixColonne2,choixLigne2,tabComplet,tabJoueur,difficulter,allPaires)
         if tmp[0] == "Gagné" :
             print("Ouahhhh T'as gagné ", pseudo," !!!!")
@@ -174,18 +177,22 @@ def choixJoueur(difficulter):
                 continuer = False
             else:
                 answer()
+                continuer = True
         elif difficulter == "normal" :
             if choix_colone1 >= 1 and choix_colone1 <= 5 and choix_ligne1 >= 1 and choix_ligne1 <= 4 and choix_colone2 >= 1 and choix_colone2 <= 5 and choix_ligne2 >= 1 and choix_ligne2 <= 4 : 
                 continuer = False
             else:
                 answer()
+                continuer=True
         elif difficulter == "difficile" :
             if choix_colone1 >= 1 and choix_colone1 <= 6 and choix_ligne1 >= 1 and choix_ligne1 <= 5 and choix_colone2 >= 1 and choix_colone2 <= 6 and choix_ligne2 >= 1 and choix_ligne2 <= 5 : 
                 continuer = False
             else:
                 answer()
+                continuer=True
         elif choix_colone1 == choixcolone2 and choix_ligne1 == choix_ligne2 :
             answer()
+            continuer=True
                    
     return [choix_colone1,choix_ligne1,choix_colone2,choix_ligne2]
 
@@ -215,8 +222,16 @@ def paires(choixColone1,choixLigne1,choixColone2,choixLigne2,tabComplet,tabJoueu
     while continuer :
         if tabComplet[choixColone1][choixLigne1] == tabComplet[choixColone2][choixLigne2] :
             allPaires += 1
-            tabJoueur [choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1] #mettre a jour le tabJoueur pour y voir la/les paire(s)
+            tabJoueur[choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1] #mettre a jour le tabJoueur pour y voir la/les paire(s)
+            tabJoueur[choixColone2][choixLigne2] = tabComplet[choixColone2][choixLigne2]
             if allPaires == paireATrouver :           
                 return ["Gagné", tabJoueur]
-                continuer = False           
-        return ["non", tabJoueur, allPaires]           
+                continuer = False
+        else:
+            tabJoueur[choixColone2][choixLigne2] = "¤"
+            tabJoueur[choixColone1][choixLigne1] = "¤"
+        return ["non", tabJoueur, allPaires]
+    
+
+
+
