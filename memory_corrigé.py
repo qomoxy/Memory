@@ -1,4 +1,4 @@
-from random import *  # pour melanger oe tableau
+from random import *  # pour melanger le tableau
 from time import *  # pour attendre avant de cacherr les cartes choisies
 
 def memory():
