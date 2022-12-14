@@ -6,11 +6,11 @@ def memory():
     """Jeux du memory"""
     
     allPaires = 0
-    s = start()
+    s = start() #demarrage du memory
     difficulter = s[0]
     pseudo = s[1]
-    tabJoueur = paletteJoueur(difficulter)
-    tabCacher = paletteCacher(difficulter)
+    tabJoueur = paletteJoueur(difficulter) #definie le tableau joueur
+    tabCacher = paletteCacher(difficulter) #definie le tableau caché, avec les resultats
     
     while win(allPaire,difficulter) : # continue tant que le joueur n'a pas gagné 
         affichage(tabJoueur) #affiche le tableau avec les paires retournées si yen a
@@ -24,16 +24,16 @@ def memory():
         sleep(7) #patiente 7 secondes 
         print("\n"*50)
         
-        p = paires(colonne1,ligne1,colonne2,ligne2,tabComplet,tabJoueur,allPaires)
+        p = paires(colonne1,ligne1,colonne2,ligne2,tabComplet,tabJoueur,allPaires) #verifie si ya des paires 
         tabJoueur = p[0]
         allPaires = p[1]
     
     
 
 
-def answer():
+def answer(): #a utiliser a chasue fois que le joueur ne repond pas correctement
     """Affiche que la reponse effectuée est impossible"""
-    print("\n ¡ Réponse Inaxetable ¡ \n")
+    print("\n ¡ Réponse Inaxetable ¡ \n") 
 
 
 def start():
@@ -42,8 +42,7 @@ def start():
     continuer = True
 
     while continuer:
-        reponse = str(input(
-            "\nBonjour à vous jeune entrepreneur, voulez vous jouer à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
+        reponse = str(input("\nBonjour à vous jeune entrepreneur, voulez vous jouer à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
 
         if reponse == "oui":
             reponse3 = str(input("\n Connaissez-vous les règles du mémory ? \noui ou non : "))
@@ -132,7 +131,7 @@ def paletteCacher(difficulter):
         lignes = 5
 
     shuffle(icones)  # Les icones sont placés aléatoirement
-    nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2)  # Calcul des icones utiles
+    nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2)  # Calcul des icones utiles par rapport a la difficulté choisie
     trueArray = ["tmp"] * nombresIconesUtiles
 
     for i in range(nombresIconesUtiles):
@@ -170,7 +169,7 @@ def choixJoueur(difficulter):
         choixColonne2 = int(input("Choisi une colone : "))
         choixLigne2 = int(input("Choisi une ligne : "))
 
-        if choixColonne1 == choixColonne2 and choixLigne1 == choixLigne2:
+        if choixColonne1 == choixColonne2 and choixLigne1 == choixLigne2: #si il choisi une seule case : il recommence
             answer()
             continuer = True
 
@@ -203,7 +202,7 @@ def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueu
         caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet)
     tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1] #affecte la case choisie
     tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2] #affecte la case choisie
-    return tabJoueur
+    return tabJoueur #renvoie un tableau avec les choix du joueur
 
 
 def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tabJoueur, difficulter, allPaires):  # marche pas -> pour test : paires(1,1,2,2,[['⛾','⛳','✈','⛴'],['⛾','⛳','✈','⛴'],['⛩','⛥','⚽','⛪'],['⛩','⛥','⚽','⛪']],[['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤'],['¤','¤','¤','¤']],"facile",0)
@@ -211,18 +210,18 @@ def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tab
     Permet de determiner si les case choisies par le joueur sont paires
     En prenant en compte la difficulté
     """   
-    paires = allPaires
+    paires = allPaires #compteur de paire 
     #entre la 
     if tabComplet(choixColone1,choixLigne1) == tabComplet(choixColone2,choixLigne2) : #erreur la 
         tabJoueur(choixColone1,choixLigne1) = tabComplet(choixColone1,choixLigne1)
-        tabJoueur(choixColone2,choixLigne2) = tabComplet(choixColone2,
+        tabJoueur(choixColone2,choixLigne2) = tabComplet(choixColone2,choixLigne2)
     #et la 
-        paires += 1
+        paires += 1 #si ya paire +1 au compteur
     return [tabJoueur,paires]
         
 def win(paires,difficulter):
     
-    while paireATrouver != None :
+    while paireATrouver != None : #continue tant que le nombre de paire a trouver nest pas trouvé
         if difficulter == "facile":
             paireATrouver = 6
         elif difficulter == "normal":
@@ -230,6 +229,6 @@ def win(paires,difficulter):
         elif difficulter == "difficile":
             paireATrouver = 17
     
-    if paires == paireATrouver :
+    if paires == paireATrouver : #verifie si toutes les paires sont trouver 
         return False
     return True
