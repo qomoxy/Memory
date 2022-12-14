@@ -15,21 +15,21 @@ def memory():
     while continuer :  # continue tant que le joueur n'a pas gagné
         affichage(tabJoueur)  # affiche le tableau avec les paires retournées si yen a
         choices = choixJoueur(difficulter)  # demande au joueur ses choix pour retourner les cartes
-        colonne1 = choices[0][0]
-        ligne1 = choices[0][1]
-        colonne2 = choices[0][2]
-        ligne2 = choices[0][3]
-        print("\n\nvisualisation 7s:")     
+        colonne1 = choices[0]
+        ligne1 = choices[1]
+        colonne2 = choices[2]
+        ligne2 = choices[3]
+        print("\n\nvisualisation 7s:")
         affichage(caseChoisie(colonne1, ligne1, colonne2, ligne2, tabJoueur, tabCacher))  # affiche ses choix au joueur
         ##Bug la, tabJoueur se fause
-        sleep(7)  # patiente 7 secondes
+        sleep(0.7)  # patiente 7 secondes
         print("\n" * 50)
         p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)  # verifie si ya des paires
         tabJoueur = p[0]
         allPaires = p[1]
         continuer = win(allPaires, difficulter) # affecte a continuer False si cest win
 
-    print("t'as gagné ", pseudo, "\n",tabCacher)
+    print("t'as gagné ", pseudo, "\n",affichage(tabCacher))
 
 
 def answer():  # a utiliser a chaque fois que le joueur ne repond pas correctement
@@ -166,42 +166,45 @@ def choixJoueur(difficulter):
     """Choix colonne de jeu en fonction de la difficulté"""
     continuer = True
     while continuer:
-        choixColonne1 = int(input("\nChoisi une colone : "))
-        choixLigne1 = int(input("Choisi une ligne : "))
-        choixColonne2 = int(input("Choisi une colone : "))
-        choixLigne2 = int(input("Choisi une ligne : "))
+        choixColonne1 = int(input("\nChoisi une colone : ")) -1
+        choixLigne1 = int(input("Choisi une ligne : ")) -1
+        choixColonne2 = int(input("Choisi une colone : ")) -1
+        choixLigne2 = int(input("Choisi une ligne : ")) -1
 
         if choixColonne1 == choixColonne2 and choixLigne1 == choixLigne2:  # si il choisi une seule case : il recommence
             answer()
             continuer = True
 
         elif difficulter == "facile":
-            if choixColonne1 >= 0 and choixColonne1 <= 3 and choixLigne1 >= 0 and choixLigne1 <= 2 and choixColonne2 >= 0 and choixColonne2 <= 3 and choixLigne2 >= 0 and choixLigne2 <= 2:
+            if choixColonne1 >= 0 and choixColonne1 <= 2 and choixLigne1 >= 0 and choixLigne1 <= 3 and choixColonne2 >= 0 and choixColonne2 <= 2 and choixLigne2 >= 0 and choixLigne2 <= 3:
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "normal":
-            if choixColonne1 >= 0 and choixColonne1 <= 4 and choixLigne1 >= 0 and choixLigne1 <= 3 and choixColonne2 >= 0 and choixColonne2 <= 4 and choixLigne2 >= 0 and choixLigne2 <= 3:
+            if choixColonne1 >= 0 and choixColonne1 <= 3 and choixLigne1 >= 0 and choixLigne1 <= 4 and choixColonne2 >= 0 and choixColonne2 <= 3 and choixLigne2 >= 0 and choixLigne2 <= 4:
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "difficile":
-            if choixColonne1 >= 0 and choixColonne1 <= 5 and choixLigne1 >= 0 and choixLigne1 <= 4 and choixColonne2 >= 0 and choixColonne2 <= 5 and choixLigne2 >= 0 and choixLigne2 <= 4:
+            if choixColonne1 >= 0 and choixColonne1 <= 4 and choixLigne1 >= 0 and choixLigne1 <= 5 and choixColonne2 >= 0 and choixColonne2 <= 4 and choixLigne2 >= 0 and choixLigne2 <= 5:
                 continuer = False
             else:
                 answer()
                 continuer = True
 
-    return [[choixColonne1, choixLigne1, choixColonne2, choixLigne2]]
+    return [choixColonne1, choixLigne1, choixColonne2, choixLigne2]
 
 
-def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet): 
+def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
+    print(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet)
+    print(tabComplet[choixColonne2][choixLigne2])
+    print(tabJoueur[choixColonne2][choixLigne2])
     if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤":  # verifie si cest deja en paire
         answer()
-        caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet)
+        caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet) #je comprends pas pq là
     tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1]  # affecte la case choisie
     tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2]  # affecte la case choisie
     return tabJoueur  # renvoie un tableau avec les choix du joueur
@@ -213,15 +216,18 @@ def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tab
     En prenant en compte la difficulté
     """
     paires = allPaires  # compteur de paire
-    if tabComplet[choixColone1][choixLigne1] == tabComplet[choixColone2][choixLigne2]:  
+    if tabComplet[choixColone1][choixLigne1] == tabComplet[choixColone2][choixLigne2]:
         tabJoueur[choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1]
         tabJoueur[choixColone2][choixLigne2] = tabComplet[choixColone2][choixLigne2]
         paires += 1  # si ya paire +1 au compteur
+    else:
+        tabJoueur[choixColone1][choixLigne1] = "¤"
+        tabJoueur[choixColone2][choixLigne2] = "¤"
     return [tabJoueur, paires]
 
 
 def win(paires, difficulter):
-    continuer = True 
+    continuer = True
     while continuer : # continue tant que le nombre de paire a trouver nest pas trouvé
         if difficulter == "facile":
             paireATrouver = 6
@@ -236,3 +242,5 @@ def win(paires, difficulter):
     if paires == paireATrouver:  # verifie si toutes les paires sont trouver
         return False
     return True
+
+memory()
