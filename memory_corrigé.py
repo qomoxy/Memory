@@ -19,17 +19,17 @@ def memory():
         ligne1 = choices[0][1]
         colonne2 = choices[0][2]
         ligne2 = choices[0][3]
-        print("\n\nvisualisation 7s:")
+        print("\n\nvisualisation 7s:")     
         affichage(caseChoisie(colonne1, ligne1, colonne2, ligne2, tabJoueur, tabCacher))  # affiche ses choix au joueur
+        ##Bug la, tabJoueur se fause
         sleep(7)  # patiente 7 secondes
         print("\n" * 50)
-
-        p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, difficulter, allPaires)  # verifie si ya des paires
+        p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)  # verifie si ya des paires
         tabJoueur = p[0]
         allPaires = p[1]
         continuer = win(allPaires, difficulter) # affecte a continuer False si cest win
 
-    print("t'as gagné ", pseudo)
+    print("t'as gagné ", pseudo, "\n",tabCacher)
 
 
 def answer():  # a utiliser a chaque fois que le joueur ne repond pas correctement
@@ -197,8 +197,8 @@ def choixJoueur(difficulter):
     return [[choixColonne1, choixLigne1, choixColonne2, choixLigne2]]
 
 
-def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
-    """Affecte au jeux du joueur la case de la grille choisi, en fonction du tableau complet"""
+def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet): 
+    """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
     if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤":  # verifie si cest deja en paire
         answer()
         caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet)
@@ -207,7 +207,7 @@ def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueu
     return tabJoueur  # renvoie un tableau avec les choix du joueur
 
 
-def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tabJoueur, difficulter,allPaires):
+def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tabJoueur,allPaires):
     """
     Permet de determiner si les case choisies par le joueur sont paires
     En prenant en compte la difficulté
