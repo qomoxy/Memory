@@ -227,6 +227,7 @@ def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tab
 
 
 def win(paires, difficulter):
+    """"Verifie si le joueur a gagné"""
     continuer = True
     while continuer : # continue tant que le nombre de paire a trouver nest pas trouvé
         if difficulter == "facile":
