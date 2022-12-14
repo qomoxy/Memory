@@ -1,5 +1,5 @@
-from random import *
-from time import *
+from random import * #pour melanger oe tableau
+from time import * #pour attendre avant de cacherr les cartes choisies
 
 
 def memory():
@@ -32,7 +32,7 @@ def memory():
     
 
 
-def answer(): #a utiliser a chasue fois que le joueur ne repond pas correctement
+def answer(): #a utiliser a chaque fois que le joueur ne repond pas correctement
     """Affiche que la reponse effectuée est impossible"""
     print("\n ¡ Réponse Inaxetable ¡ \n") 
 
