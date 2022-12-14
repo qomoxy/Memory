@@ -27,6 +27,7 @@ def memory():
         p = paires(colonne1,ligne1,colonne2,ligne2,tabComplet,tabJoueur,allPaires) #verifie si ya des paires 
         tabJoueur = p[0]
         allPaires = p[1]
+    print("t'as gagné ",pseudo)
     
     
 
