@@ -10,9 +10,11 @@ def memory():
     pseudo = s[1]
     tabJoueur = paletteJoueur(difficulter)  # definie le tableau joueur
     tabCacher = paletteCacher(difficulter)  # definie le tableau caché, avec les resultats
+    compteur = 0
 
     continuer = True
     while continuer :  # continue tant que le joueur n'a pas gagné
+        compteur += 1
         affichage(tabJoueur)  # affiche le tableau avec les paires retournées si yen a
         choices = choixJoueur(difficulter)  # demande au joueur ses choix pour retourner les cartes
         colonne1 = choices[0]
@@ -21,15 +23,14 @@ def memory():
         ligne2 = choices[3]
         print("\n\nvisualisation 7s:")
         affichage(caseChoisie(colonne1, ligne1, colonne2, ligne2, tabJoueur, tabCacher))  # affiche ses choix au joueur
-        ##Bug la, tabJoueur se fause
-        sleep(0.7)  # patiente 7 secondes
+        sleep(7)  # patiente 7 secondes
         print("\n" * 50)
         p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)  # verifie si ya des paires
         tabJoueur = p[0]
         allPaires = p[1]
         continuer = win(allPaires, difficulter) # affecte a continuer False si cest win
 
-    print("t'as gagné ", pseudo, "\n",affichage(tabCacher))
+    print("t'as gagné ", pseudo, "\n",affichage(tabCacher),"\n en ",compteur," tour.")
 
 
 def answer():  # a utiliser a chaque fois que le joueur ne repond pas correctement
@@ -168,8 +169,8 @@ def choixJoueur(difficulter):
     while continuer:
         choixColonne1 = int(input("\nChoisi une colone : ")) -1
         choixLigne1 = int(input("Choisi une ligne : ")) -1
-        choixColonne2 = int(input("Choisi une colone : ")) -1
-        choixLigne2 = int(input("Choisi une ligne : ")) -1
+        choixColonne2 = int(input("Choisi une autre colone : ")) -1
+        choixLigne2 = int(input("Choisi une autre ligne : ")) -1
 
         if choixColonne1 == choixColonne2 and choixLigne1 == choixLigne2:  # si il choisi une seule case : il recommence
             answer()
@@ -199,9 +200,6 @@ def choixJoueur(difficulter):
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
-    print(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet)
-    print(tabComplet[choixColonne2][choixLigne2])
-    print(tabJoueur[choixColonne2][choixLigne2])
     if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤":  # verifie si cest deja en paire
         answer()
         caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet) #je comprends pas pq là
@@ -227,7 +225,6 @@ def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tab
 
 
 def win(paires, difficulter):
-    """"Verifie si le joueur a gagné"""
     continuer = True
     while continuer : # continue tant que le nombre de paire a trouver nest pas trouvé
         if difficulter == "facile":
