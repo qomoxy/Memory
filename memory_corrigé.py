@@ -213,7 +213,7 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
     """
     paires = allPaires  # compteur de paire
     if tabComplet[choixLigne1][choixColonne1] == tabComplet[choixLigne2][choixColonne2]:
-        tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixLigne1][choixColonne1]
+        tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
         tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
         paires += 1  #s'il y a paire : +1 au compteur
     else:
