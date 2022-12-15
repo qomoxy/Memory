@@ -1,64 +1,64 @@
-from random import *  # pour melanger le tableau
-from time import *  # pour attendre avant de cacherr les cartes choisies
+from random import *  # pour mélanger le tableau
+from time import *  # pour attendre avant de cacher les cartes choisies
+
 
 def memory():
     """Jeux du memory"""
 
     allPaires = 0
-    s = start()  # demarrage du memory
+    s = start()  # démarrage du memory
     difficulter = s[0]
     pseudo = s[1]
-    tabJoueur = paletteJoueur(difficulter)  # definie le tableau joueur
-    tabCacher = paletteCacher(difficulter)  # definie le tableau caché, avec les resultats
+    tabJoueur = paletteJoueur(difficulter)  # définie le tableau joueur
+    tabCacher = paletteCacher(difficulter)  # définie le tableau caché, avec les résultats
     compteur = 0
 
     continuer = True
-    while continuer :  # continue tant que le joueur n'a pas gagné
+    while continuer:  # continue tant que le joueur n'a pas gagné
         compteur += 1
-        affichage(tabJoueur)  # affiche le tableau avec les paires retournées si yen a
-        choices = choixJoueur(difficulter)  # demande au joueur ses choix pour retourner les cartes
-        colonne1 = choices[0]
-        ligne1 = choices[1]
-        colonne2 = choices[2]
-        ligne2 = choices[3]
+        affichage(tabJoueur)  # affiche le tableau avec les paires retournées s'il y en a
+        choix = choixJoueur(difficulter)  # demande au joueur ses choix pour retourner les cartes
+        colonne1 = choix[0]
+        ligne1 = choix[1]
+        colonne2 = choix[2]
+        ligne2 = choix[3]
         print("\n\nvisualisation 7s:")
         affichage(caseChoisie(colonne1, ligne1, colonne2, ligne2, tabJoueur, tabCacher))  # affiche ses choix au joueur
         sleep(7)  # patiente 7 secondes
         print("\n" * 50)
-        p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)  # verifie si ya des paires
+        p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)  # vérifie s'il y a des paires
         tabJoueur = p[0]
         allPaires = p[1]
-        continuer = win(allPaires, difficulter) # affecte a continuer False si cest win
+        continuer = win(allPaires, difficulter)  # affecte a continuer False si cest win
 
-    print("t'as gagné ", pseudo, "\n",affichage(tabCacher),"\n en ",compteur," tour.")
+    print("t'as gagné ", pseudo, "\n", affichage(tabCacher), "\n en ", compteur, " tour.")
 
 
-def answer():  # a utiliser a chaque fois que le joueur ne repond pas correctement
-    """Affiche que la reponse effectuée est impossible"""
-    print("\n ¡ Réponse Inaxetable ¡ \n")
+def answer():  # à utiliser à chaque fois que le joueur ne répond pas correctement
+    """Affiche que la réponse effectuée est impossible"""
+    print("\n ¡ Réponse pas executable ¡ \n")
 
 
 def start():
-    """Discours du debut avec règle et pseudo, reponse : [difficulter, pseudo]"""
+    """Discours du debut avec règle et pseudo, réponse : [difficulter, pseudo]"""
 
     continuer = True
 
     while continuer:
-        reponse = str(input(
-            "\nBonjour à vous jeune entrepreneur, voulez vous jouer à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
+        reponseJeu = str(input("\nBonjour à vous jeunes entrepreneurs, voulez vous jouer à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
 
-        if reponse == "oui":
-            reponse3 = str(input("\n Connaissez-vous les règles du mémory ? \noui ou non : "))
+        if reponseJeu == "oui":
+            reponseRegle = str(input("\n Connaissez-vous les règles du memory ? \noui ou non : "))
             continuer = False
 
-        elif reponse == "non":
-            reponse2 = str(input("\n Es-tu sûr jeune entrepreneur ?! \noui ou non : "))
+        elif reponseJeu == "non":
+            reponseSur = str(input("\n Êtes-vous sûrs jeunes entrepreneurs ?! \noui ou non : "))
             continuer = False
 
-            if reponse2 == "non":
+            if reponseSur == "non":
                 continuer = True
 
-            elif reponse2 == "oui":
+            elif reponseSur == "oui":
                 print("\n Tu fait quoi ici ?? \n\n")
                 continuer = True
 
@@ -73,9 +73,9 @@ def start():
 
     while continuer:
 
-        if reponse3 == "non":
+        if reponseRegle == "non":
             print(
-                "\n  Voici les règles du mémory : \n Vous retournez deux cartes, si les symboles/images sont identiques, vous gagnez la paire constituée et rejouer. Si les symboles/images sont différentes, vous les reposez faces cachées là où elles étaient. La partie est terminée lorsque toutes les cartes ont été assemblées par paires.\n")
+                "\n  Voici les règles du memory : \n Vous retournez deux cartes, si les symboles/images sont identiques, vous gagnez la paire constituée et rejouer. Si les symboles/images sont différentes, vous les reposez faces cachées là où elles étaient. La partie est terminée lorsque toutes les cartes ont été assemblées par paires.\n")
             pseudo = input("\n Quelle est votre pseudonyme jeune entrepreneur : ")
             print("\n  Que voulez vous comme difficulté ", pseudo, " ?")
             difficulter = str(input("facile, normal ou difficile : "))
@@ -85,9 +85,9 @@ def start():
             else:
                 answer()
 
-        elif reponse3 == "oui":
+        elif reponseRegle == "oui":
             pseudo = input("\n Quelle est votre pseudonyme jeune entrepreneur : ")
-            print("\n",pseudo,"que voulez vous comme difficulté ?")
+            print("\n", pseudo, "que voulez vous comme difficulté ?")
             difficulter = str(input("facile ou normal ou difficile : "))
 
             if difficulter == "facile" or difficulter == "normal" or difficulter == "difficile":
@@ -103,15 +103,15 @@ def start():
 
 
 def paletteJoueur(difficulter):
-    """Créer un tableau de difficultter voulue pour qu'ils soit afficher"""
+    """Créer un tableau de difficulté voulue pour qu'il soit afficher"""
     if difficulter == "facile":
-        arrays = [["¤"] * 4 for alt in range(3)]  # Il faut 6 paires
+        arrays = [["¤"] * 4 for _ in range(3)]  # Il faut 6 paires
 
     elif difficulter == "normal":
-        arrays = [["¤"] * 5 for alt in range(4)]  # Il faut 10 paires
+        arrays = [["¤"] * 5 for _ in range(4)]  # Il faut 10 paires
 
     else:
-        arrays = [["¤"] * 7 for alt in range(5)]  # Il faut 17 paires + 1 symbole
+        arrays = [["¤"] * 7 for _ in range(5)]  # Il faut 17 paires + 1 symbole
     return arrays
 
 
@@ -134,9 +134,8 @@ def paletteCacher(difficulter):
         lignes = 5
 
     shuffle(icones)  # Les icones sont placés aléatoirement
-    nombresIconesUtiles = (colonnes * lignes // 2) + (
-                colonnes * lignes % 2)  # Calcul des icones utiles par rapport a la difficulté choisie
-    trueArray = ["tmp"] * nombresIconesUtiles
+    nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2)  # Calcul des icones utiles par rapport à la difficulté choisie
+    trueArray = ["tmp"] * nombresIconesUtiles  #sert à créer la taille du tableau en 1 dimension
 
     for i in range(nombresIconesUtiles):
         trueArray[i] = icones[i]
@@ -144,7 +143,7 @@ def paletteCacher(difficulter):
     trueArray += trueArray
     shuffle(trueArray)
 
-    tabJoueur = [["a"] * colonnes for i in range(lignes)]
+    tabJoueur = [["a"] * colonnes for _ in range(lignes)] #sert à créer la taille du tableau en 2 dimensions
     for i in range(lignes):
         for j in range(colonnes):
             tabJoueur[i][j] = trueArray[colonnes * i + j]
@@ -167,29 +166,29 @@ def choixJoueur(difficulter):
     """Choix colonne de jeu en fonction de la difficulté"""
     continuer = True
     while continuer:
-        choixColonne1 = int(input("\nChoisi une colone : ")) -1
-        choixLigne1 = int(input("Choisi une ligne : ")) -1
-        choixColonne2 = int(input("Choisi une autre colone : ")) -1
-        choixLigne2 = int(input("Choisi une autre ligne : ")) -1
+        choixColonne1 = int(input("\nChoisi une colonne : ")) - 1
+        choixLigne1 = int(input("Choisi une ligne : ")) - 1
+        choixColonne2 = int(input("Choisi une autre colonne : ")) - 1
+        choixLigne2 = int(input("Et une autre ligne : ")) - 1
 
         if choixColonne1 == choixColonne2 and choixLigne1 == choixLigne2:  # si il choisi une seule case : il recommence
             answer()
             continuer = True
 
         elif difficulter == "facile":
-            if choixColonne1 >= 0 and choixColonne1 <= 2 and choixLigne1 >= 0 and choixLigne1 <= 3 and choixColonne2 >= 0 and choixColonne2 <= 2 and choixLigne2 >= 0 and choixLigne2 <= 3:
+            if 0 <= choixColonne1 <= 2 and 0 <= choixLigne1 <= 3 and 0 <= choixColonne2 <= 2 and 0 <= choixLigne2 <= 3:
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "normal":
-            if choixColonne1 >= 0 and choixColonne1 <= 3 and choixLigne1 >= 0 and choixLigne1 <= 4 and choixColonne2 >= 0 and choixColonne2 <= 3 and choixLigne2 >= 0 and choixLigne2 <= 4:
+            if 0 <= choixColonne1 <= 3 and 0 <= choixLigne1 <= 4 and 0 <= choixColonne2 <= 3 and 0 <= choixLigne2 <= 4:
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "difficile":
-            if choixColonne1 >= 0 and choixColonne1 <= 4 and choixLigne1 >= 0 and choixLigne1 <= 5 and choixColonne2 >= 0 and choixColonne2 <= 4 and choixLigne2 >= 0 and choixLigne2 <= 5:
+            if 0 <= choixColonne1 <= 4 and 0 <= choixLigne1 <= 5 and 0 <= choixColonne2 <= 4 and 0 <= choixLigne2 <= 5:
                 continuer = False
             else:
                 answer()
@@ -200,33 +199,32 @@ def choixJoueur(difficulter):
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
-    if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤":  # verifie si cest deja en paire
-        answer()
-        caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet) #je comprends pas pq là
+    if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤":  # vérifie si c'est deja en paire
+        print("T'as deja découvert ces cartes, dommage tu perd un tour")
     tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1]  # affecte la case choisie
     tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2]  # affecte la case choisie
     return tabJoueur  # renvoie un tableau avec les choix du joueur
 
 
-def paires(choixColone1, choixLigne1, choixColone2, choixLigne2, tabComplet, tabJoueur,allPaires):
+def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, tabJoueur, allPaires):
     """
     Permet de determiner si les case choisies par le joueur sont paires
     En prenant en compte la difficulté
     """
     paires = allPaires  # compteur de paire
-    if tabComplet[choixColone1][choixLigne1] == tabComplet[choixColone2][choixLigne2]:
-        tabJoueur[choixColone1][choixLigne1] = tabComplet[choixColone1][choixLigne1]
-        tabJoueur[choixColone2][choixLigne2] = tabComplet[choixColone2][choixLigne2]
-        paires += 1  # si ya paire +1 au compteur
+    if tabComplet[choixColonne1][choixLigne1] == tabComplet[choixColonne2][choixLigne2]:
+        tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1]
+        tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2]
+        paires += 1  #s'il y a paire : +1 au compteur
     else:
-        tabJoueur[choixColone1][choixLigne1] = "¤"
-        tabJoueur[choixColone2][choixLigne2] = "¤"
+        tabJoueur[choixColonne1][choixLigne1] = "¤"
+        tabJoueur[choixColonne2][choixLigne2] = "¤"
     return [tabJoueur, paires]
 
 
 def win(paires, difficulter):
     continuer = True
-    while continuer : # continue tant que le nombre de paire a trouver nest pas trouvé
+    while continuer:  # continue tant que le nombre de paires à trouver n'est pas trouvé
         if difficulter == "facile":
             paireATrouver = 6
             continuer = False
@@ -237,8 +235,9 @@ def win(paires, difficulter):
             paireATrouver = 17
             continuer = False
 
-    if paires == paireATrouver:  # verifie si toutes les paires sont trouver
+    if paires == paireATrouver:  # vérifie si toutes les paires sont trouvées
         return False
     return True
+
 
 memory()
