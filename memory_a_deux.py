@@ -72,11 +72,11 @@ def memory():
             affichage(caseChoisie(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabJoueur, tabCacher))  # affiche ses choix au joueur 2
             sleep(7)  # patiente 7 secondes
             print("\n" * 4)
-            
+
             #A terminer
-            
-            
-            
+
+
+
 
 
 def answer():  # à utiliser à chaque fois que le joueur ne répond pas correctement
@@ -246,11 +246,10 @@ def choixJoueur(difficulter):
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
-    if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][
-        choixLigne2] != "¤":  # vérifie si c'est deja en paire
+    if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤":  # vérifie si c'est deja en paire
         print("T'as deja découvert ces cartes, dommage tu perd un tour")
-    tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1]  # affecte la case choisie
-    tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2]  # affecte la case choisie
+    tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]  # affecte la case choisie
+    tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]  # affecte la case choisie
     return tabJoueur  # renvoie un tableau avec les choix du joueur
 
 
@@ -260,13 +259,13 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
     En prenant en compte la difficulté
     """
     paires = allPaires  # compteur de paire
-    if tabComplet[choixColonne1][choixLigne1] == tabComplet[choixColonne2][choixLigne2]:
-        tabJoueur[choixColonne1][choixLigne1] = tabComplet[choixColonne1][choixLigne1]
-        tabJoueur[choixColonne2][choixLigne2] = tabComplet[choixColonne2][choixLigne2]
-        paires += 1  # s'il y a paire : +1 au compteur
+    if tabComplet[choixLigne1][choixColonne1] == tabComplet[choixLigne2][choixColonne2]:
+        tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
+        tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
+        paires += 1  #s'il y a paire : +1 au compteur
     else:
-        tabJoueur[choixColonne1][choixLigne1] = "¤"
-        tabJoueur[choixColonne2][choixLigne2] = "¤"
+        tabJoueur[choixLigne1][choixColonne1] = "¤"
+        tabJoueur[choixLigne2][choixColonne2] = "¤"
     return [tabJoueur, paires]
 
 
@@ -289,3 +288,4 @@ def win(paires, difficulter):
 
 
 memory()
+
