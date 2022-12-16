@@ -72,11 +72,18 @@ def memory():
             affichage(caseChoisie(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabJoueur, tabCacher))  # affiche ses choix au joueur 2
             sleep(7)  # patiente 7 secondes
             print("\n" * 4)
-
-            #A terminer
-
-
-
+            
+            p1 = paires(colonne1J1, ligne1J1, colonne2J1, ligne2J1, tabCacher, tabJoueur, allPairesJ1)
+            p2 = paires(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabCacher, tabJoueur, allPairesJ2)
+            
+            tabJ1 = p1[0]
+            tabJ2 = p2[0]
+            
+            #Allpaire a faire
+            
+            tabJoueur = paireA2(tabJ1,tabJ2,tabJoueur)
+            
+            #xin a faire
 
 
 def answer():  # à utiliser à chaque fois que le joueur ne répond pas correctement
@@ -287,5 +294,19 @@ def win(paires, difficulter):
     return True
 
 
-memory()
+def paireA2(tabJ1, tabJ2, tabJoueur) :
+    
+    for i in range(tabJ1) :
+        for j in range(len(tabJ1[0])) :
+            if tabJ1[i][j] != "¤" :
+                tabJoueur[i][j] = tabJ1[i][j]
+    for i in range(tabJ2) :
+        for j in range(len(tabJ2[0])) :
+            if tabJ2[i][j] != "¤" :
+                tabJoueur[i][j] = tabJ2[i][j]
+    return tabJoueur
 
+
+
+
+memory()
