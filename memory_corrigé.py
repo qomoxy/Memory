@@ -22,9 +22,8 @@ def memory():
         ligne1 = choix[1]
         colonne2 = choix[2]
         ligne2 = choix[3]
-        print("\n\nvisualisation 7s:")
         affichage(caseChoisie(colonne1, ligne1, colonne2, ligne2, tabJoueur, tabCacher))  # affiche ses choix au joueur
-        sleep(7)  # patiente 7 secondes
+        passe = input("Appuyez sur entrée si vous voulez passer :")
         print("\n" * 50)
         p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)  # vérifie s'il y a des paires
         tabJoueur = p[0]
@@ -105,13 +104,13 @@ def start():
 def paletteJoueur(difficulter):
     """Créer un tableau de difficulté voulue pour qu'il soit afficher"""
     if difficulter == "facile":
-        arrays = [["¤"] * 4 for _ in range(3)]  # Il faut 6 paires
+        arrays = [["⬜"] * 4 for _ in range(3)]  # Il faut 6 paires
 
     elif difficulter == "normal":
-        arrays = [["¤"] * 5 for _ in range(4)]  # Il faut 10 paires
+        arrays = [["⬜"] * 5 for _ in range(4)]  # Il faut 10 paires
 
     else:
-        arrays = [["¤"] * 7 for _ in range(5)]  # Il faut 17 paires + 1 symbole
+        arrays = [["⬜"] * 7 for _ in range(5)]  # Il faut 17 paires + 1 symbole
     return arrays
 
 
@@ -119,7 +118,7 @@ def paletteCacher(difficulter):
     """Créer notre palette de départ en fonction de la difficulter choisie"""
 
     nombresIconesUtiles = 0
-    icones = ['⛾', '⛳', '✈', '⛴', '⛺', '⛟', '⛏', '⛄', '⛩', '⛥', '⚽', '⛪', '✂', '➹', 'a', 'b', 'c', 'd', 'e']
+    icones = ['⚓', '⛳', '✈', '⛴', '⛺', '⛟', '⛏', '☂', '⚡', '⛥', '⚽', '⛪', '✂', '➹', '☀', '⌛', '⛅', '♻', '✉']
 
     if difficulter == "facile":
         colonnes = 4
@@ -176,19 +175,19 @@ def choixJoueur(difficulter):
             continuer = True
 
         elif difficulter == "facile":
-            if 0 <= choixColonne1 <= 2 and 0 <= choixLigne1 <= 3 and 0 <= choixColonne2 <= 2 and 0 <= choixLigne2 <= 3:
+            if 0 <= choixColonne1 <= 3 and 0 <= choixLigne1 <= 2 and 0 <= choixColonne2 <= 3 and 0 <= choixLigne2 <= 2:
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "normal":
-            if 0 <= choixColonne1 <= 3 and 0 <= choixLigne1 <= 4 and 0 <= choixColonne2 <= 3 and 0 <= choixLigne2 <= 4:
+            if 0 <= choixColonne1 <= 4 and 0 <= choixLigne1 <= 3 and 0 <= choixColonne2 <= 4 and 0 <= choixLigne2 <= 3:
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "difficile":
-            if 0 <= choixColonne1 <= 4 and 0 <= choixLigne1 <= 5 and 0 <= choixColonne2 <= 4 and 0 <= choixLigne2 <= 5:
+            if 0 <= choixColonne1 <= 5 and 0 <= choixLigne1 <= 4 and 0 <= choixColonne2 <= 5 and 0 <= choixLigne2 <= 4:
                 continuer = False
             else:
                 answer()
@@ -199,7 +198,7 @@ def choixJoueur(difficulter):
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
-    if tabJoueur[choixColonne1][choixLigne1] != "¤" or tabJoueur[choixColonne2][choixLigne2] != "¤":  # vérifie si c'est deja en paire
+    if tabJoueur[choixColonne1][choixLigne1] != "⬜" or tabJoueur[choixColonne2][choixLigne2] != "⬜":  # vérifie si c'est deja en paire
         print("T'as deja découvert ces cartes, dommage tu perd un tour")
     tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]  # affecte la case choisie
     tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]  # affecte la case choisie
@@ -217,8 +216,8 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
         tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
         paires += 1  #s'il y a paire : +1 au compteur
     else:
-        tabJoueur[choixLigne1][choixColonne1] = "¤"
-        tabJoueur[choixLigne2][choixColonne2] = "¤"
+        tabJoueur[choixLigne1][choixColonne1] = "⬜"
+        tabJoueur[choixLigne2][choixColonne2] = "⬜"
     return [tabJoueur, paires]
 
 
