@@ -58,6 +58,7 @@ def memory():
                                   tabCacher))  # affiche ses choix au joueur 1
             input("Appuyez sur entrée, si vous voulez passer : ")
             print("\n" * 4)
+            p1 = paires(colonne1J1, ligne1J1, colonne2J1, ligne2J1, tabCacher, tabJoueur, allPairesJ1)
 
             print(pseudoJ2, " c'est à toi de jouer :")
             affichage(tabJoueur)  # affiche le tableau avec les paires retournées s'il y en a
@@ -71,7 +72,6 @@ def memory():
             input("Appuyez sur entrée, si vous voulez passer : ")
             print("\n" * 4)
 
-            p1 = paires(colonne1J1, ligne1J1, colonne2J1, ligne2J1, tabCacher, tabJoueur, allPairesJ1)
             p2 = paires(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabCacher, tabJoueur, allPairesJ2)
 
             tabJ1 = p1[0]
