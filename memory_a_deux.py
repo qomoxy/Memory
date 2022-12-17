@@ -1,6 +1,6 @@
 from random import *  # pour mélanger le tableau
 
-
+[['✈', '⚓', '✉', '⛅'], ['⛳', '⛳', '⛅', '✉'], ['⛟', '⚓', '⛟', '✈']]
 def memory():
     """Jeux du memory"""
 
@@ -235,19 +235,19 @@ def choixJoueur(difficulter):
             continuer = True
 
         elif difficulter == "facile":
-            if 0 <= choixColonne1 <= 2 and 0 <= choixLigne1 <= 3 and 0 <= choixColonne2 <= 2 and 0 <= choixLigne2 <= 3:
+            if 0 <= choixColonne1 <= 3 and 0 <= choixLigne1 <= 2 and 0 <= choixColonne2 <= 3 and 0 <= choixLigne2 <= 2:
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "normal":
-            if 0 <= choixColonne1 <= 3 and 0 <= choixLigne1 <= 4 and 0 <= choixColonne2 <= 3 and 0 <= choixLigne2 <= 4:
+            if 0 <= choixColonne1 <= 4 and 0 <= choixLigne1 <= 3 and 0 <= choixColonne2 <= 4 and 0 <= choixLigne2 <= 3:
                 continuer = False
             else:
                 answer()
                 continuer = True
         elif difficulter == "difficile":
-            if 0 <= choixColonne1 <= 4 and 0 <= choixLigne1 <= 5 and 0 <= choixColonne2 <= 4 and 0 <= choixLigne2 <= 5:
+            if 0 <= choixColonne1 <= 6 and 0 <= choixLigne1 <= 4 and 0 <= choixColonne2 <= 6 and 0 <= choixLigne2 <= 4:
                 continuer = False
             else:
                 answer()
