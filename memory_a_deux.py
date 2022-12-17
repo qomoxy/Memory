@@ -1,6 +1,6 @@
 from random import *  # pour mélanger le tableau
 
-[['✈', '⚓', '✉', '⛅'], ['⛳', '⛳', '⛅', '✉'], ['⛟', '⚓', '⛟', '✈']]
+
 def memory():
     """Jeux du memory"""
 
@@ -46,7 +46,7 @@ def memory():
         continuer = True
         while continuer:  # continue tant qu'aucuns joueurs ne gagne
             compteur += 1
-
+            print(tabCacher)
             print(pseudoJ1, " c'est à toi de jouer :")
             affichage(tabJoueur)  # affiche le tableau avec les paires retournées s'il y en a
             choixJ1 = choixJoueur(difficulter)  # demande au joueur 1 ses choix pour retourner les cartes
@@ -218,13 +218,14 @@ def verif(num_str):
     except ValueError:
         answer()
         print("la première colonne/ligne a donc été choisie")
-        return continuer
+        return 1
 
 
 def choixJoueur(difficulter):
     """Choix colonne de jeu en fonction de la difficulté"""
     continuer = True
     while continuer:
+
         choixColonne1 = verif(str(input("\nChoisi une colonne : "))) - 1
         choixLigne1 = verif(str(input("Choisi une ligne : "))) - 1
         choixColonne2 = verif(str(input("Choisi une autre colonne : "))) - 1
