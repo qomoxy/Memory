@@ -1,5 +1,6 @@
 from random import *  # pour mélanger le tableau
 
+
 def memory():
     """Jeux du memory"""
 
@@ -21,7 +22,7 @@ def memory():
         colonne2 = choix[2]
         ligne2 = choix[3]
         affichage(caseChoisie(colonne1, ligne1, colonne2, ligne2, tabJoueur, tabCacher))  # affiche ses choix au joueur
-        passe = input("Appuyez sur entrée si vous voulez passer :")
+        input("Appuyez sur entrée si vous voulez passer :")
         print("\n" * 50)
         p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)  # vérifie s'il y a des paires
         tabJoueur = p[0]
@@ -42,7 +43,8 @@ def start():
     continuer = True
 
     while continuer:
-        reponseJeu = str(input("\nBonjour à vous jeunes entrepreneurs, voulez vous jouer à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
+        reponseJeu = str(input(
+            "\nBonjour à vous jeunes entrepreneurs, voulez vous jouer à ce magnifique jeu nommé 'memory' ? \noui ou non : "))
 
         if reponseJeu == "oui":
             reponseRegle = str(input("\n Connaissez-vous les règles du memory ? \noui ou non : "))
@@ -115,7 +117,6 @@ def paletteJoueur(difficulter):
 def paletteCacher(difficulter):
     """Créer notre palette de départ en fonction de la difficulter choisie"""
 
-    nombresIconesUtiles = 0
     icones = ['⚓', '⛳', '✈', '⛴', '⛺', '⛟', '⛏', '☂', '⚡', '⛥', '⚽', '⛪', '✂', '➹', '☀', '⌛', '⛅', '♻', '✉']
 
     if difficulter == "facile":
@@ -131,8 +132,9 @@ def paletteCacher(difficulter):
         lignes = 5
 
     shuffle(icones)  # Les icones sont placés aléatoirement
-    nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2)  # Calcul des icones utiles par rapport à la difficulté choisie
-    trueArray = ["tmp"] * nombresIconesUtiles  #sert à créer la taille du tableau en 1 dimension
+    nombresIconesUtiles = (colonnes * lignes // 2) + (
+                colonnes * lignes % 2)  # Calcul des icones utiles par rapport à la difficulté choisie
+    trueArray = ["tmp"] * nombresIconesUtiles  # sert à créer la taille du tableau en 1 dimension
 
     for i in range(nombresIconesUtiles):
         trueArray[i] = icones[i]
@@ -140,7 +142,7 @@ def paletteCacher(difficulter):
     trueArray += trueArray
     shuffle(trueArray)
 
-    tabJoueur = [["a"] * colonnes for _ in range(lignes)] #sert à créer la taille du tableau en 2 dimensions
+    tabJoueur = [["a"] * colonnes for _ in range(lignes)]  # sert à créer la taille du tableau en 2 dimensions
     for i in range(lignes):
         for j in range(colonnes):
             tabJoueur[i][j] = trueArray[colonnes * i + j]
@@ -159,7 +161,7 @@ def affichage(arrays):
     return print(res)
 
 
-def verif(num_str) :
+def verif(num_str):
     continuer = True
     try:
         return int(num_str)
@@ -207,7 +209,7 @@ def choixJoueur(difficulter):
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
     if tabJoueur[choixLigne1][choixColonne1] != "⬜" or tabJoueur[choixLigne2][choixColonne2] != "⬜":  # vérifie si c'est deja en paire
-        print("T'as deja découvert ces cartes, dommage tu perd un tour")
+        print("\n\n\nT'as deja découvert ces cartes, dommage tu perd un tour")
     tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]  # affecte la case choisie
     tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]  # affecte la case choisie
     return tabJoueur  # renvoie un tableau avec les choix du joueur
@@ -222,7 +224,7 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
     if tabComplet[choixLigne1][choixColonne1] == tabComplet[choixLigne2][choixColonne2]:
         tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
         tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
-        paires += 1  #s'il y a paire : +1 au compteur
+        paires += 1  # s'il y a paire : +1 au compteur
     else:
         tabJoueur[choixLigne1][choixColonne1] = "⬜"
         tabJoueur[choixLigne2][choixColonne2] = "⬜"
@@ -245,5 +247,6 @@ def win(paires, difficulter):
     if paires == paireATrouver:  # vérifie si toutes les paires sont trouvées
         return False
     return True
+
 
 memory()
