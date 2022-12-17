@@ -159,7 +159,7 @@ def affichage(arrays):
     return print(res)
 
 
-def verif(num_str, difficulter) :
+def verif(num_str) :
     continuer = True
     try:
         return int(num_str)
@@ -173,10 +173,10 @@ def choixJoueur(difficulter):
     """Choix colonne de jeu en fonction de la difficulté"""
     continuer = True
     while continuer:
-        choixColonne1 = verif(str(input("\nChoisi une colonne : ")), difficulter) - 1
-        choixLigne1 = verif(str(input("Choisi une ligne : ")), difficulter) - 1
-        choixColonne2 = verif(str(input("Choisi une autre colonne : ")), difficulter) - 1
-        choixLigne2 = verif(str(input("Et une autre ligne : ")), difficulter) - 1
+        choixColonne1 = verif(str(input("\nChoisi une colonne : "))) - 1
+        choixLigne1 = verif(str(input("Choisi une ligne : "))) - 1
+        choixColonne2 = verif(str(input("Choisi une autre colonne : "))) - 1
+        choixLigne2 = verif(str(input("Et une autre ligne : "))) - 1
 
         if choixColonne1 == choixColonne2 and choixLigne1 == choixLigne2:  # si il choisi une seule case : il recommence
             answer()
