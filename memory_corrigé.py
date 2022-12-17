@@ -1,6 +1,4 @@
 from random import *  # pour mélanger le tableau
-from time import *  # pour attendre avant de cacher les cartes choisies
-
 
 def memory():
     """Jeux du memory"""
@@ -161,14 +159,24 @@ def affichage(arrays):
     return print(res)
 
 
+def verif(num_str, difficulter) :
+    continuer = True
+    try:
+        return int(num_str)
+    except ValueError:
+        answer()
+        print("la première colonne/ligne a donc été choisie")
+        return continuer
+
+
 def choixJoueur(difficulter):
     """Choix colonne de jeu en fonction de la difficulté"""
     continuer = True
     while continuer:
-        choixColonne1 = int(input("\nChoisi une colonne : ")) - 1
-        choixLigne1 = int(input("Choisi une ligne : ")) - 1
-        choixColonne2 = int(input("Choisi une autre colonne : ")) - 1
-        choixLigne2 = int(input("Et une autre ligne : ")) - 1
+        choixColonne1 = verif(str(input("\nChoisi une colonne : ")), difficulter) - 1
+        choixLigne1 = verif(str(input("Choisi une ligne : ")), difficulter) - 1
+        choixColonne2 = verif(str(input("Choisi une autre colonne : ")), difficulter) - 1
+        choixLigne2 = verif(str(input("Et une autre ligne : ")), difficulter) - 1
 
         if choixColonne1 == choixColonne2 and choixLigne1 == choixLigne2:  # si il choisi une seule case : il recommence
             answer()
@@ -198,7 +206,7 @@ def choixJoueur(difficulter):
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
-    if tabJoueur[choixColonne1][choixLigne1] != "⬜" or tabJoueur[choixColonne2][choixLigne2] != "⬜":  # vérifie si c'est deja en paire
+    if tabJoueur[choixLigne1][choixColonne1] != "⬜" or tabJoueur[choixLigne2][choixColonne2] != "⬜":  # vérifie si c'est deja en paire
         print("T'as deja découvert ces cartes, dommage tu perd un tour")
     tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]  # affecte la case choisie
     tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]  # affecte la case choisie
@@ -237,6 +245,5 @@ def win(paires, difficulter):
     if paires == paireATrouver:  # vérifie si toutes les paires sont trouvées
         return False
     return True
-
 
 memory()
