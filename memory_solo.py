@@ -208,10 +208,21 @@ def choixJoueur(difficulter):
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
-    if tabJoueur[choixLigne1][choixColonne1] != "⬜" or tabJoueur[choixLigne2][choixColonne2] != "⬜":  # vérifie si c'est deja en paire
-        print("\n\n\nT'as deja découvert ces cartes, dommage tu perd un tour")
-    tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]  # affecte la case choisie
-    tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]  # affecte la case choisie
+    if tabJoueur[choixLigne2][choixColonne2] != "⬜":  # vérifie si c'est deja en paire
+        print("\n\n\nT'as deja découvert cette carte, dommage tu perd un tour")
+        if tabJoueur[choixLigne1][choixColonne1] != "⬜":
+            print("\n\n\nT'as deja découvert cette carte, dommage tu perd un tour")
+        else :
+            tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
+    elif tabJoueur[choixLigne1][choixColonne1] != "⬜":  # vérifie si c'est deja en paire
+        print("\n\n\nT'as deja découvert cette carte, dommage tu perd un tour")
+        if tabJoueur[choixLigne2][choixColonne2] != "⬜":
+            print("\n\n\nT'as deja découvert cette carte, dommage tu perd un tour")
+        else :
+            tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
+    else :
+        tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]  # affecte la case choisie
+        tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]  # affecte la case choisie
     return tabJoueur  # renvoie un tableau avec les choix du joueur
 
 
@@ -225,6 +236,10 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
         tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
         tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
         paires += 1  # s'il y a paire : +1 au compteur
+    elif tabJoueur[choixLigne1][choixColonne1] == tabComplet[choixLigne1][choixColonne1]:
+        tabJoueur[choixLigne2][choixColonne2] = "⬜"
+    elif tabJoueur[choixLigne2][choixColonne2] == tabComplet[choixLigne2][choixColonne2]:
+        tabJoueur[choixLigne1][choixColonne1] = "⬜"
     else:
         tabJoueur[choixLigne1][choixColonne1] = "⬜"
         tabJoueur[choixLigne2][choixColonne2] = "⬜"
