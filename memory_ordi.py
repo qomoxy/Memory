@@ -129,7 +129,10 @@ def start():
 
         if reponseJeu == "oui":
             reponseRegle = str(input("\n Connaissez-vous les règles du memory ? \noui ou non : "))
-            continuer = False
+            if reponseRegle != "oui" and reponseRegle != "non" :
+                continuer = True
+            else :
+                continuer = False
 
         elif reponseJeu == "non":
             reponseSur = str(input("\n Êtes-vous sûrs jeunes entrepreneurs ?! \noui ou non : "))
@@ -148,6 +151,7 @@ def start():
 
         else:
             answer()
+            continuer = True
 
     continuer = True
     while continuer:
@@ -166,7 +170,10 @@ def start():
             pseudo = input("\n Quelle est votre pseudonyme jeune entrepreneur : ")
             print("\n  Que voulez vous comme difficulté ", pseudo, " ?")
             difficulter = str(input("facile, normal ou difficile : "))
-            return ["solo", difficulter, pseudo]
+            if difficulter == "facile" or difficulter == "normal" or difficulter == "difficile" :
+                return ["solo", difficulter, pseudo]
+            answer()
+            continuer = True
 
         elif cmbJoueurs == "duo":
             print("\n\nQuels sont vos  pseudonymes jeunes entrepreneurs ?")
@@ -174,13 +181,21 @@ def start():
             pseudoJ2 = input("\n Joueur 2 : ")
             print("\n  Que voulez vous comme difficulté ", pseudoJ1, " et ", pseudoJ2, " ?")
             difficulter = str(input("facile, normal ou difficile : "))
-            return ["duo", difficulter, pseudoJ1, pseudoJ2]
+            if difficulter == "facile" or difficulter == "normal" or difficulter == "difficile" :
+                return ["duo", difficulter, pseudoJ1, pseudoJ2]
+            answer()
+            continuer = True
+
 
         if cmbJoueurs == "ordi":
             pseudo = input("\n Quelle est votre pseudonyme jeune entrepreneur : ")
             print("\n  Que voulez vous comme difficulté ", pseudo, " ?")
             difficulter = str(input("facile, normal ou difficile : "))
-            return ["ordi", difficulter, pseudo]
+            if difficulter == "facile" or difficulter == "normal" or difficulter == "difficile" :
+                return ["ordi", difficulter, pseudo]
+            answer()
+            continuer = True
+
 
         else:
             answer()
@@ -293,10 +308,15 @@ def choixJoueur(difficulter):
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
     """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
-    if tabJoueur[choixLigne1][choixColonne1] != "⬜" or tabJoueur[choixLigne2][choixColonne2] != "⬜":  # vérifie si c'est deja en paire
+    if tabJoueur[choixLigne1][choixColonne1] != "⬜" and tabJoueur[choixLigne2][choixColonne2] != "⬜":  # vérifie si c'est deja en paire
         print("\n\n\nT'as deja découvert ces cartes, dommage tu perd un tour.")
-    tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]  # affecte la case choisie
-    tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]  # affecte la case choisie
+        return tabJoueur
+    elif tabJoueur[choixLigne1][choixColonne1] != "⬜" or tabJoueur[choixLigne2][choixColonne2] != "⬜":
+        print("\n\n\nT'as deja découvert une de ces cartes, dommage tu perd un tour.")
+        return tabJoueur
+    else :
+        tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]  # affecte la case choisie
+        tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]  # affecte la case choisie
     return tabJoueur  # renvoie un tableau avec les choix du joueur
 
 
@@ -310,9 +330,19 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
         tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
         tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
         paires += 1  # s'il y a paire : +1 au compteur
+    elif tabJoueur[choixLigne1][choixColonne1] == tabComplet[choixLigne1][choixColonne1]:
+        tabJoueur[choixLigne2][choixColonne2] = "⬜"
+        print(1)
+    elif tabJoueur[choixLigne2][choixColonne2] == tabComplet[choixLigne2][choixColonne2]:
+        tabJoueur[choixLigne1][choixColonne1] = "⬜"
+        print(2)
     else:
         tabJoueur[choixLigne1][choixColonne1] = "⬜"
         tabJoueur[choixLigne2][choixColonne2] = "⬜"
+        print(3)
+    return [tabJoueur, paires]
+
+
     return [tabJoueur, paires]
 
 
@@ -395,8 +425,19 @@ def Ordi(difficulter,colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, t
                     print("Choisi une autre colonne : " + colonne2)
                     print("Et une autre ligne : " + ligne2)
                     return [i, j, colonne2, ligne2]
-    for # Il faut continuer ici, tester aussi le mod difficil 
-        # là il faut faire 2 boucle for pour que tu sais il trouve pas de paire il choisi deux colones et lignes dictinte et inégal, poas déjà choisi et qui les return puis finir la fonction
+
+    for e in range(lignes):
+        for y in range(colonnes):
+            if tabOrdiTmp[colonne2][ligne2] == tabCacher[e][y] :
+                if tabOrdiTmp[colonne2][ligne2] == tabOrdiTmp[z][u] and tabJoueur[colonne2][ligne2] == tabJoueur[z][u]:
+                    break
+                else :
+                    print("\nChoix Ordinateur : ")
+                    print("\nChoisi une colonne : " + i)
+                    print("Choisi une ligne : " + j)
+                    print("Choisi une autre colonne : " + colonne2)
+                    print("Et une autre ligne : " + ligne2)
+                    return [i, j, colonne2, ligne2]
 
 
 
