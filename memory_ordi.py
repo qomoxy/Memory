@@ -10,7 +10,7 @@ def memory():
     tabJoueur = paletteJoueur(difficulter)  # définie le tableau joueur
     tabCacher = paletteCacher(difficulter)  # définie le tableau caché, avec les résultats
     compteur = 0
-    
+
     if cmbJoueurs == "solo":
 
         pseudo = s[2]
@@ -454,6 +454,10 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
     tabOrdiTmp[ligne1][colonne1] = tabCacher[ligne1][colonne1]
     tabOrdiTmp[ligne2][colonne2] = tabCacher[ligne2][colonne2]
 
+    print(ligneChoix1, colonneChoix1, colonneChoix2, ligneChoix2)
+    print(tabJoueur)
+    print(tabCacher)
+    print(tabOrdiTmp)
     if colonneChoix1 is not None and ligneChoix1 is not None and colonneChoix2 is not None and ligneChoix2 is not None:
         for i in range(lignes):
             for j in range(colonnes):
