@@ -34,8 +34,8 @@ def memory():
             tabJoueur = p[0]
             allPaires = p[1]
             continuer = win(allPaires, difficulter)  # affecte a continuer False si cest win
-
-        print("\n Bravo ! T'as gagné ", pseudo, " en ", compteur, " tours." "\n", affichage(tabCacher))
+        affichage(tabCacher)
+        print("\n Bravo ! T'as gagné ", pseudo, " en ", compteur, " tours." "\n" )
 
     elif cmbJoueurs == "duo":
 
@@ -84,8 +84,18 @@ def memory():
 
             tabJoueur = paireA2(tabJ1, tabJ2, tabJoueur)
 
-            continuer = win(allPairesJ1, difficulter)  # mec, c'est pas utiliser je capte pas
-            continuer = win(allPairesJ2, difficulter)
+            if win(allPairesJ1, difficulter):
+                continuer = True
+            elif not win(allPairesJ1, difficulter):
+                continuer = False 
+                
+            elif win(allPairesJ2, difficulter):
+                continuer = True
+            elif not win(allPairesJ2, difficulter):
+                continuer = False
+                
+            # continuer = win(allPairesJ1, difficulter)   mec, c'est pas utiliser je capte pas
+            # continuer = win(allPairesJ2, difficulter)
 
     elif cmbJoueurs == "ordi":
 
@@ -122,8 +132,17 @@ def memory():
 
             tabJoueur = paireA2(tabJ1, tabJ2, tabJoueur)
 
-            continuer = win(allPaires, difficulter)  # mec, c'est pas utiliser je capte pas
-            continuer = win(allPairesOrdi, difficulter)
+            if win(allPairesJ1, difficulter):
+                continuer = True
+            elif not win(allPairesJ1, difficulter):
+                continuer = False
+
+            elif win(allPairesJ2, difficulter):
+                continuer = True
+            elif not win(allPairesJ2, difficulter):
+                continuer = False
+            # continuer = win(allPaires, difficulter)  mec, c'est pas utiliser je capte pas
+            # continuer = win(allPairesOrdi, difficulter)
 
         print("t'as gagné ", pseudo, "\n", affichage(tabCacher), "\n en ", compteur, " tours. ")
 
@@ -229,7 +248,8 @@ def paletteJoueur(difficulter):
 def paletteCacher(difficulter):
     """Créer notre palette de départ en fonction de la difficulter choisie"""
 
-    icones = ['⚓', '⛳', '✈', '⛴', '⛺', '⛟', '⛏', '☂', '⚡', '⛥', '⚽', '⛪', '✂', '➹', '☀', '⌛', '⛅', '♻', '✉']
+    icones = ['⚓', '⛳', '⛺', '⚽', '⛪', '⌛', '⛅', '🍀', '🌷', '🍊', '🍎', '🍒', '🍟', '⚽️',
+          '🎮', '🚀', '🚅', '🌌', '🐘', '🐶', '🐱', '🐤', '🌈', '👖', '👓', '❓']
 
     if difficulter == "facile":
         colonnes = 4
@@ -245,7 +265,7 @@ def paletteCacher(difficulter):
 
     shuffle(icones)  # Les icones sont placés aléatoirement
     nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2)  # Calcul des icones utiles par rapport à la difficulté choisie
-    trueArray = ["tmp"] * nombresIconesUtiles  # sert à créer la taille du tableau en 1 dimension
+    trueArray = [None] * nombresIconesUtiles  # sert à créer la taille du tableau en 1 dimension
 
     for nb in range(nombresIconesUtiles):
         trueArray[nb] = icones[nb]
@@ -253,7 +273,7 @@ def paletteCacher(difficulter):
     trueArray += trueArray
     shuffle(trueArray)
 
-    tabJoueur = [["a"] * colonnes for _ in range(lignes)]  # sert à créer la taille du tableau en 2 dimensions
+    tabJoueur = [[None] * colonnes for _ in range(lignes)]  # sert à créer la taille du tableau en 2 dimensions
     for i in range(lignes):
         for j in range(colonnes):
             tabJoueur[i][j] = trueArray[colonnes * i + j]
@@ -327,6 +347,7 @@ def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueu
     elif tabJoueur[choixLigne1][choixColonne1] != "⬜" or tabJoueur[choixLigne2][choixColonne2] != "⬜":
         print("\n\n\nT'as déjà découvert une de ces cartes, dommage tu perd un tour. ")
         return tabJoueur
+
     else :
         tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]  # affecte la case choisie
         tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]  # affecte la case choisie
@@ -353,7 +374,7 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
         print(2)
     else:
         tabJoueur[choixLigne1][choixColonne1] = "⬜"
-        tabJoueur[choixLigne2][choixColonne2] = "⬜"
+        tabJoueur[choixLigne2][choixColonne2] = "⬜" #ça genère un bug
         print(3)
 
     return [tabJoueur, paires]
