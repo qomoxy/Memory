@@ -133,7 +133,8 @@ def memory():
             input("Appuyez sur entrée si vous voulez passer : ")
             print("\n" * 4)
             p1 = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)
-
+            tabJoueur = p1[0]
+            print(tabJoueur)
             computer = ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, tabOrdiTmp)
             affichage(caseChoisie(computer[0], computer[1], computer[2], computer[3], tabJoueur, tabCacher))
             p2 = paires(computer[0], computer[1], computer[2], computer[3], tabCacher, tabJoueur, allPairesOrdi)  # vérifie s'il y a des paires
@@ -144,13 +145,7 @@ def memory():
                 colonneChoix2 = [2]
                 ligneChoix2 = computer[3]
 
-            tabJ1 = p1[0]
-            tabJ2 = p2[0]
-
-            allPaires = p1[1]
-            allPairesOrdi = p2[1]
-
-            tabJoueur = paireA2(tabJ1, tabJ2, tabJoueur)
+            tabJoueur = p2[0]
 
             if win(allPaires + allPairesOrdi, difficulter):
                 continuer = True
@@ -385,6 +380,7 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
     En prenant en compte la difficulté
     """
     paires = allPaires  # compteur de paire
+
     if tabComplet[choixLigne1][choixColonne1] == tabComplet[choixLigne2][choixColonne2]:
         tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
         tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
@@ -396,11 +392,12 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
 
     elif tabJoueur[choixLigne2][choixColonne2] == tabComplet[choixLigne2][choixColonne2]:
         tabJoueur[choixLigne1][choixColonne1] = "⬜"
-        print(2)
+        print(7)
     else:
         tabJoueur[choixLigne1][choixColonne1] = "⬜"
         tabJoueur[choixLigne2][choixColonne2] = "⬜"  # ça genère un bug
-        print(3)
+        print(5)
+    print(tabJoueur)
 
     return [tabJoueur, paires]
 
@@ -458,6 +455,7 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
     print(tabJoueur)
     print(tabCacher)
     print(tabOrdiTmp)
+
     if colonneChoix1 is not None and ligneChoix1 is not None and colonneChoix2 is not None and ligneChoix2 is not None:
         for i in range(lignes):
             for j in range(colonnes):
@@ -467,7 +465,7 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
                     elif ligneChoix1 == i and colonneChoix1 == j :
                         pass
                     else:
-                        print(1)
+                        print(10)
                         print("\nChoix Ordinateur : ")
                         print("\nChoisi une colonne : " + str(j + 1))
                         print("Choisi une ligne : " + str(i + 1))
@@ -483,7 +481,8 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
                 elif tabJoueur[ligne1][colonne1] == tabJoueur[i][j] and tabJoueur[ligne1][colonne1] != "⬜" and tabJoueur[i][j] != "⬜":
                     break
                 else :
-                    print(2)
+                    print(20)
+                    print(i, j, colonne1, ligne1)
                     print("\nChoix Ordinateur : ")
                     print("\nChoisi une colonne : " + str(j + 1))
                     print("Choisi une ligne : " + str(i + 1))
