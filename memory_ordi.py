@@ -10,7 +10,7 @@ def memory():
     tabJoueur = paletteJoueur(difficulter)  # définie le tableau joueur
     tabCacher = paletteCacher(difficulter)  # définie le tableau caché, avec les résultats
     compteur = 0
-    tabOrdiTmp = None
+    tabOrdiTmp = 1
 
     if cmbJoueurs == "solo":
 
@@ -131,10 +131,13 @@ def memory():
             print("\n" * 4)
             p1 = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)
 
-            print(tabJoueur)
-            print(p1[0])
+            tabJoueur = p1[0]
+
             computer = ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, tabOrdiTmp)
             affichage(caseChoisie(computer[0], computer[1], computer[2], computer[3], tabJoueur, tabCacher))
+
+            tabOrdiTmp = computer[4]
+
             p2 = paires(computer[0], computer[1], computer[2], computer[3], tabCacher, tabJoueur, allPairesOrdi)  # vérifie s'il y a des paires
 
             if computer[4]:
@@ -144,6 +147,9 @@ def memory():
                 ligneChoix2 = computer[3]
 
             tabJoueur = p2[0]
+
+            allPaires = p2[1]
+            allPairesOrdi = p1[1]
 
             if win(allPaires + allPairesOrdi, difficulter):
                 continuer = True
@@ -431,6 +437,8 @@ def paireA2(tabJ1, tabJ2, tabJoueur):
 
 def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, tabOrdiTmp):
 
+    print(tabOrdiTmp)
+
     if difficulter == "facile":
         colonnes = 4
         lignes = 3
@@ -443,13 +451,12 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
         colonnes = 7
         lignes = 5
 
-    if tabOrdiTmp == None:
+    if tabOrdiTmp == 1 :
         tabOrdiTmp: list[list[str]] = paletteJoueur(difficulter)
         print(100)
 
     tabOrdiTmp[ligne1][colonne1] = tabCacher[ligne1][colonne1]
     tabOrdiTmp[ligne2][colonne2] = tabCacher[ligne2][colonne2]
-    print(200)
 
     print(ligneChoix1, colonneChoix1, colonneChoix2, ligneChoix2)
     print(tabJoueur)
@@ -471,7 +478,8 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
                         print("Choisi une ligne : " + str(i + 1))
                         print("Choisi une autre colonne : " + str(colonneChoix1 + 1))
                         print("Et une autre ligne : " + str(ligneChoix1 + 1))
-                        return [j, i, colonneChoix1, ligneChoix1, False]
+                        tabOrdiTmp[i][j] = tabCacher[i][j]
+                        return [j, i, colonneChoix1, ligneChoix1, False, tabOrdiTmp]
 
     for i in range(lignes):
         for j in range(colonnes):
@@ -488,7 +496,8 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
                     print("Choisi une ligne : " + str(i + 1))
                     print("Choisi une autre colonne : " + str(colonne1 + 1))
                     print("Et une autre ligne : " + str(ligne1 + 1))
-                    return [j, i, colonne1, ligne1, False]
+                    tabOrdiTmp[i][j] = tabCacher[i][j]
+                    return [j, i, colonne1, ligne1, False, tabOrdiTmp]
 
     for z in range(lignes):
         for u in range(colonnes):
@@ -504,7 +513,8 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
                     print("Choisi une ligne : " + str(z + 1))
                     print("Choisi une autre colonne : " + str(colonne2 + 1))
                     print("Et une autre ligne : " + str(ligne2 + 1))
-                    return [u, z, colonne2, ligne2, False]
+                    tabOrdiTmp[z][u] = tabCacher[z][u]
+                    return [u, z, colonne2, ligne2, False, tabOrdiTmp]
 
     ligneChoix1 = -1
 
@@ -527,6 +537,8 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
                     print(5)
                     print("Choisi une autre colonne : " + str(colonneChoix2 + 1))
                     print("Et une autre ligne : " + str(ligneChoix2 + 1))
-                    return [colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, True]
+                    tabOrdiTmp[ligneChoix1][colonneChoix1] = tabCacher[ligneChoix1][colonneChoix1]
+                    tabOrdiTmp[ligneChoix2][colonneChoix2] = tabCacher[ligneChoix2][colonneChoix2]
+                    return [colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, True, tabOrdiTmp]
 
 memory()
