@@ -92,24 +92,19 @@ def memory():
         affichage(tabCacher)
 
         if allPairesJ1 == allPairesJ2 :
-            print("\n Bine joué à vous deux ! Vous êtes à égalité  ", pseudoJ1, "et", pseudoJ2, "\nVous avez fini en ", compteur, " tours." "\n")
+            print("\n Bien joué à vous deux ! Vous êtes à égalité  ", pseudoJ1, "et", pseudoJ2, "\nVous avez fini en ", compteur, " tours." "\n")
         elif allPairesJ2 > allPairesJ1 :
-            print("\n Bine joué ", pseudoJ2, " ! Tu as gagné avec  ", allPairesJ2, " points.",
+            print("\n Bien joué ", pseudoJ2, " ! Tu as gagné avec  ", allPairesJ2, " points.",
                     "Bien essayé ", pseudoJ1, " ! Tu était à ", allPairesJ1, " points.",
                     "\nVous avez fini en ", compteur, " tours." "\n")
         elif allPairesJ1 > allPairesJ2 :
-            print("\n Bine joué", pseudoJ1, " ! Tu as gagné avec  ", allPairesJ1, " points.",
+            print("\n Bien joué", pseudoJ1, " ! Tu as gagné avec  ", allPairesJ1, " points.",
                     "Bien essayé ", pseudoJ2, " ! Tu était à ", allPairesJ2, " points.",
                     "\nVous avez fini en ", compteur, " tours." "\n")
         else :
             print("Fin de la game !")
 
     elif cmbJoueurs == "ordi":
-
-        colonneChoix1 = None
-        ligneChoix1 = None
-        colonneChoix2 = None
-        ligneChoix2 = None
 
         pseudo = s[2]
 
@@ -133,18 +128,12 @@ def memory():
 
             tabJoueur = p1[0]
 
-            computer = ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, tabOrdiTmp)
+            computer = ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, tabOrdiTmp)
             affichage(caseChoisie(computer[0], computer[1], computer[2], computer[3], tabJoueur, tabCacher))
 
             tabOrdiTmp = computer[4]
 
             p2 = paires(computer[0], computer[1], computer[2], computer[3], tabCacher, tabJoueur, allPairesOrdi)  # vérifie s'il y a des paires
-
-            if computer[4]:
-                colonneChoix1 = computer[0]
-                ligneChoix1 = computer[1]
-                colonneChoix2 = [2]
-                ligneChoix2 = computer[3]
 
             tabJoueur = p2[0]
 
@@ -435,9 +424,7 @@ def paireA2(tabJ1, tabJ2, tabJoueur):
                 tabJoueur[i][j] = tabJ2[i][j]
     return tabJoueur
 
-def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, tabOrdiTmp):
-
-    print(tabOrdiTmp)
+def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, tabOrdiTmp):
 
     if difficulter == "facile":
         colonnes = 4
@@ -458,66 +445,32 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
     tabOrdiTmp[ligne1][colonne1] = tabCacher[ligne1][colonne1]
     tabOrdiTmp[ligne2][colonne2] = tabCacher[ligne2][colonne2]
 
-    print(ligneChoix1, colonneChoix1, colonneChoix2, ligneChoix2)
     print(tabJoueur)
     print(tabCacher)
     print(tabOrdiTmp)
 
-    if colonneChoix1 is not None and ligneChoix1 is not None and colonneChoix2 is not None and ligneChoix2 is not None:
-        for i in range(lignes):
-            for j in range(colonnes):
-                if tabOrdiTmp[ligneChoix1][colonneChoix1] == tabOrdiTmp[i][j]:
-                    if tabOrdiTmp[ligneChoix1][colonneChoix1] == tabOrdiTmp[i][j] and tabJoueur[ligneChoix1][colonneChoix1] == tabJoueur[i][j]:
-                        break
-                    elif ligneChoix1 == i and colonneChoix1 == j:
-                        pass
-                    else:
-                        print(10)
-                        print("\nChoix Ordinateur : ")
-                        print("\nChoisi une colonne : " + str(j + 1))
-                        print("Choisi une ligne : " + str(i + 1))
-                        print("Choisi une autre colonne : " + str(colonneChoix1 + 1))
-                        print("Et une autre ligne : " + str(ligneChoix1 + 1))
-                        tabOrdiTmp[i][j] = tabCacher[i][j]
-                        return [j, i, colonneChoix1, ligneChoix1, False, tabOrdiTmp]
-
-    for i in range(lignes):
-        for j in range(colonnes):
-            if tabOrdiTmp[ligne1][colonne1] == tabOrdiTmp[i][j] :
-                if i == ligne1 and j == colonne1 or i == ligne2 and j == colonne2:
-                    continue
-                elif tabJoueur[ligne1][colonne1] == tabJoueur[i][j] and tabJoueur[ligne1][colonne1] != "⬜" and tabJoueur[i][j] != "⬜":
-                    break
-                else :
-                    print(20)
-                    print(i, j, colonne1, ligne1)
-                    print("\nChoix Ordinateur : ")
-                    print("\nChoisi une colonne : " + str(j + 1))
-                    print("Choisi une ligne : " + str(i + 1))
-                    print("Choisi une autre colonne : " + str(colonne1 + 1))
-                    print("Et une autre ligne : " + str(ligne1 + 1))
-                    tabOrdiTmp[i][j] = tabCacher[i][j]
-                    return [j, i, colonne1, ligne1, False, tabOrdiTmp]
-
-    for z in range(lignes):
-        for u in range(colonnes):
-            if tabOrdiTmp[ligne2][colonne2] == tabOrdiTmp[z][u] :
-                if z == ligne1 and u == colonne1 or z == ligne2 and u == colonne2:
-                    continue
-                elif tabJoueur[ligne2][colonne2] == tabJoueur[z][u] and tabJoueur[ligne2][colonne2] != "⬜" and tabJoueur[z][u] != "⬜":
-                    break
-                else :
-                    print(3)
-                    print("\nChoix Ordinateur : ")
-                    print("\nChoisi une colonne : " + str(u + 1))
-                    print("Choisi une ligne : " + str(z + 1))
-                    print("Choisi une autre colonne : " + str(colonne2 + 1))
-                    print("Et une autre ligne : " + str(ligne2 + 1))
-                    tabOrdiTmp[z][u] = tabCacher[z][u]
-                    return [u, z, colonne2, ligne2, False, tabOrdiTmp]
+    for x in range(lignes):
+        for y in range(colonnes) :
+            if tabOrdiTmp[x][y] != "⬜":
+                for i in range(lignes):
+                    for j in range(colonnes):
+                        if tabOrdiTmp[x][y] == tabOrdiTmp[i][j] :
+                            if i == x and j == y :
+                                continue
+                            elif tabJoueur[i][j] == tabJoueur[x][y] and tabJoueur[x][y] != "⬜" and tabJoueur[i][j] != "⬜":
+                                continue
+                            else :
+                                print(20)
+                                print(i, j, colonne1, ligne1)
+                                print("\nChoix Ordinateur : ")
+                                print("\nChoisi une colonne : " + str(y + 1))
+                                print("Choisi une ligne : " + str(x + 1))
+                                print("Choisi une autre colonne : " + str(i + 1))
+                                print("Et une autre ligne : " + str(j + 1))
+                                tabOrdiTmp[i][j] = tabCacher[i][j]
+                                return [y, x, j, i, tabOrdiTmp]
 
     ligneChoix1 = -1
-
     continuer = True
     while continuer:
         ligneChoix1 += 1
@@ -530,15 +483,17 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
                 continuer = False
                 break
 
-    for ligneChoix2 in range(lignes):
+    ligneChoix2 = -1
+    continuer = True
+    while continuer:
+        ligneChoix2 += 1
         for colonneChoix2 in range(colonnes):
-            if tabOrdiTmp[ligneChoix2][colonneChoix2] == "⬜" and ligneChoix1 != ligneChoix2 or colonneChoix1 != colonneChoix2 :
-                if colonne2 != colonneChoix2 or ligne2 != ligneChoix2 and colonne1 != colonneChoix2 or ligne1 != ligneChoix2 :
-                    print(5)
-                    print("Choisi une autre colonne : " + str(colonneChoix2 + 1))
-                    print("Et une autre ligne : " + str(ligneChoix2 + 1))
-                    tabOrdiTmp[ligneChoix1][colonneChoix1] = tabCacher[ligneChoix1][colonneChoix1]
-                    tabOrdiTmp[ligneChoix2][colonneChoix2] = tabCacher[ligneChoix2][colonneChoix2]
-                    return [colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, True, tabOrdiTmp]
+            if tabOrdiTmp[ligneChoix2][colonneChoix2] == "⬜" and ligneChoix2 != ligneChoix2 or colonneChoix2 != colonneChoix1:
+                print(5)
+                print("Choisi une autre colonne : " + str(colonneChoix2 + 1))
+                print("Et une autre ligne : " + str(ligneChoix2 + 1))
+                tabOrdiTmp[ligneChoix1][colonneChoix1] = tabCacher[ligneChoix1][colonneChoix1]
+                tabOrdiTmp[ligneChoix2][colonneChoix2] = tabCacher[ligneChoix2][colonneChoix2]
+                return [colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, tabOrdiTmp]
 
 memory()
