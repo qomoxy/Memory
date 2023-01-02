@@ -488,7 +488,7 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
     while continuer:
         ligneChoix2 += 1
         for colonneChoix2 in range(colonnes):
-            if tabOrdiTmp[ligneChoix2][colonneChoix2] == "⬜" and ligneChoix2 != ligneChoix2 or colonneChoix2 != colonneChoix1:
+            if tabOrdiTmp[ligneChoix2][colonneChoix2] == "⬜" and ligneChoix2 != ligneChoix1 or colonneChoix2 != colonneChoix1:
                 print(5)
                 print("Choisi une autre colonne : " + str(colonneChoix2 + 1))
                 print("Et une autre ligne : " + str(ligneChoix2 + 1))
