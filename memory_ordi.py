@@ -27,10 +27,12 @@ def memory():
             ligne1 = choix[1]
             colonne2 = choix[2]
             ligne2 = choix[3]
-            affichage(caseChoisie(colonne1, ligne1, colonne2, ligne2, tabJoueur, tabCacher))  # affiche ses choix au joueur
+            case = caseChoisie(colonne1, ligne1, colonne2, ligne2, tabJoueur, tabCacher)
+            affichage(case[0])  # affiche ses choix au joueur
+            tabJoueur = case[0]
             input("Appuyez sur entrée si vous voulez passer : ")
             print("\n" * 50)
-            p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)  # vérifie s'il y a des paires
+            p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires, case[1])  # vérifie s'il y a des paires
             tabJoueur = p[0]
             allPaires = p[1]
             continuer = win(allPaires, difficulter)  # affecte a continuer False si cest win
@@ -56,11 +58,13 @@ def memory():
             ligne1J1 = choixJ1[1]
             colonne2J1 = choixJ1[2]
             ligne2J1 = choixJ1[3]
-            affichage(caseChoisie(colonne1J1, ligne1J1, colonne2J1, ligne2J1, tabJoueur,
-                                  tabCacher))  # affiche ses choix au joueur 1
+            case = caseChoisie(colonne1J1, ligne1J1, colonne2J1, ligne2J1, tabJoueur,
+                        tabCacher)
+            affichage(case[0])  # affiche ses choix au joueur 1
+            tabJoueur = case[0]
             input("Appuyez sur entrée, si vous voulez passer : ")
             print("\n" * 4)
-            p1 = paires(colonne1J1, ligne1J1, colonne2J1, ligne2J1, tabCacher, tabJoueur, allPairesJ1)
+            p1 = paires(colonne1J1, ligne1J1, colonne2J1, ligne2J1, tabCacher, tabJoueur, allPairesJ1, case[1])
 
             print(pseudoJ2, " c'est à toi de jouer : ")
             affichage(tabJoueur)  # affiche le tableau avec les paires retournées s'il y en a
@@ -69,12 +73,14 @@ def memory():
             ligne1J2 = choixJ2[1]
             colonne2J2 = choixJ2[2]
             ligne2J2 = choixJ2[3]
-            affichage(caseChoisie(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabJoueur,
-                                  tabCacher))  # affiche ses choix au joueur 2
+            case =  caseChoisie(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabJoueur,
+                        tabCacher)
+            affichage(case[0])  # affiche ses choix au joueur 2
+            tabJoueur = case[0]
             input("Appuyez sur entrée, si vous voulez passer : ")
             print("\n" * 4)
 
-            p2 = paires(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabCacher, tabJoueur, allPairesJ2)
+            p2 = paires(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabCacher, tabJoueur, allPairesJ2, case[1])
 
             tabJ1 = p1[0]
             tabJ2 = p2[0]
@@ -121,19 +127,23 @@ def memory():
             ligne1 = choix[1]
             colonne2 = choix[2]
             ligne2 = choix[3]
-            affichage(caseChoisie(colonne1, ligne1, colonne2, ligne2, tabJoueur, tabCacher))  # affiche ses choix au joueur
+            case = caseChoisie(colonne1, ligne1, colonne2, ligne2, tabJoueur, tabCacher)
+            affichage(case[0])  # affiche ses choix au joueur
+            tabJoueur = case[0]
             input("Appuyez sur entrée si vous voulez passer : ")
             print("\n" * 4)
-            p1 = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires)
+            p1 = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires, case[1])
 
             tabJoueur = p1[0]
 
             computer = ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, tabOrdiTmp)
-            affichage(caseChoisie(computer[0], computer[1], computer[2], computer[3], tabJoueur, tabCacher))
+            case = caseChoisie(computer[0], computer[1], computer[2], computer[3], tabJoueur, tabCacher)
+            affichage(case[0])
+            tabJoueur = case[0]
 
             tabOrdiTmp = computer[4]
 
-            p2 = paires(computer[0], computer[1], computer[2], computer[3], tabCacher, tabJoueur, allPairesOrdi)  # vérifie s'il y a des paires
+            p2 = paires(computer[0], computer[1], computer[2], computer[3], tabCacher, tabJoueur, allPairesOrdi, case[1])  # vérifie s'il y a des paires
 
             tabJoueur = p2[0]
 
@@ -353,6 +363,7 @@ def choixJoueur(difficulter):
 
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
+    global Bool
     """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
     if tabJoueur[choixLigne1][choixColonne1] != "⬜" and tabJoueur[choixLigne2][choixColonne2] != "⬜":  # vérifie si c'est deja en paire
         print("\n\n\nT'as déjà découvert ces cartes, dommage tu perd un tour. ")
@@ -362,18 +373,39 @@ def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueu
         return tabJoueur
 
     else :
-        tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]  # affecte la case choisie
-        tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]  # affecte la case choisie
-    return tabJoueur  # renvoie un tableau avec les choix du joueur
+        if tabJoueur[choixLigne1][choixColonne1] == tabComplet[choixLigne1][choixColonne1] and tabJoueur[choixLigne2][choixColonne2] == tabComplet[choixLigne2][choixColonne2] :
+            Bool = 0
+            return tabJoueur, Bool
+        elif tabJoueur[choixLigne1][choixColonne1] == tabComplet[choixLigne1][choixColonne1] :
+            tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
+            Bool = 1
+            return tabJoueur, Bool
+        elif tabJoueur[choixLigne2][choixColonne2] == tabComplet[choixLigne2][choixColonne2] :
+            tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
+            Bool = 2
+            return tabJoueur, Bool
+        else :
+            tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
+            tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
+            Bool = 3
+            return tabJoueur, Bool # renvoie un tableau avec les choix du joueur
 
 
-def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, tabJoueur, allPaires):
+def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, tabJoueur, allPaires, Bool):
     """
     Permet de determiner si les case choisies par le joueur sont paires
     En prenant en compte la difficulté
     """
     paires = allPaires  # compteur de paire
-
+    if Bool == 0:
+        return [tabJoueur, paires]
+    elif Bool == 1:
+        tabJoueur[choixLigne2][choixColonne2] = "⬜"
+        return [tabJoueur, paires]
+    elif Bool == 2:
+        tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
+        return [tabJoueur, paires]
+        
     if tabComplet[choixLigne1][choixColonne1] == tabComplet[choixLigne2][choixColonne2]:
         tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
         tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
@@ -426,6 +458,7 @@ def paireA2(tabJ1, tabJ2, tabJoueur):
 
 def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, tabOrdiTmp):
 
+    global colonneChoix1
     if difficulter == "facile":
         colonnes = 4
         lignes = 3
@@ -488,12 +521,13 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
     while continuer:
         ligneChoix2 += 1
         for colonneChoix2 in range(colonnes):
-            if tabOrdiTmp[ligneChoix2][colonneChoix2] == "⬜" and ligneChoix2 != ligneChoix1 or colonneChoix2 != colonneChoix1:
-                print(5)
-                print("Choisi une autre colonne : " + str(colonneChoix2 + 1))
-                print("Et une autre ligne : " + str(ligneChoix2 + 1))
-                tabOrdiTmp[ligneChoix1][colonneChoix1] = tabCacher[ligneChoix1][colonneChoix1]
-                tabOrdiTmp[ligneChoix2][colonneChoix2] = tabCacher[ligneChoix2][colonneChoix2]
-                return [colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, tabOrdiTmp]
+            if tabOrdiTmp[ligneChoix2][colonneChoix2] == "⬜" :
+                if ligneChoix2 != ligneChoix1 or colonneChoix2 != colonneChoix1 :
+                    print(tabOrdiTmp[ligneChoix2][colonneChoix2] == "⬜")
+                    print("Choisi une autre colonne : " + str(colonneChoix2 + 1))
+                    print("Et une autre ligne : " + str(ligneChoix2 + 1))
+                    tabOrdiTmp[ligneChoix1][colonneChoix1] = tabCacher[ligneChoix1][colonneChoix1]
+                    tabOrdiTmp[ligneChoix2][colonneChoix2] = tabCacher[ligneChoix2][colonneChoix2]
+                    return [colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, tabOrdiTmp]
 
 memory()
