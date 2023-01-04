@@ -2,7 +2,9 @@ from random import *  # pour mélanger le tableau
 
 
 def memory():
-    """Jeux du memory"""
+    """
+    Jeux du memory
+    """
 
     s = start()  # démarrage du memory
     cmbJoueurs = s[0]
@@ -32,7 +34,8 @@ def memory():
             affichage(tabJoueur)  # affiche ses choix au joueur
             input("Appuyez sur entrée si vous voulez passer : ")
             print("\n" * 50)
-            p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires, case[1])  # vérifie s'il y a des paires
+            p = paires(colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, allPaires,
+                       case[1])  # vérifie s'il y a des paires
             tabJoueur = p[0]
             allPaires = p[1]
             continuer = win(allPaires, difficulter)  # affecte a continuer False si cest win
@@ -58,8 +61,7 @@ def memory():
             ligne1J1 = choixJ1[1]
             colonne2J1 = choixJ1[2]
             ligne2J1 = choixJ1[3]
-            case = caseChoisie(colonne1J1, ligne1J1, colonne2J1, ligne2J1, tabJoueur,
-                        tabCacher)
+            case = caseChoisie(colonne1J1, ligne1J1, colonne2J1, ligne2J1, tabJoueur, tabCacher)
             tabJoueur = case[0]
             affichage(tabJoueur)  # affiche ses choix au joueur 1
             input("Appuyez sur entrée, si vous voulez passer : ")
@@ -73,13 +75,11 @@ def memory():
             ligne1J2 = choixJ2[1]
             colonne2J2 = choixJ2[2]
             ligne2J2 = choixJ2[3]
-            case = caseChoisie(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabJoueur,
-                        tabCacher)
+            case = caseChoisie(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabJoueur, tabCacher)
             tabJoueur = case[0]
             affichage(tabJoueur)  # affiche ses choix au joueur 2
             input("Appuyez sur entrée, si vous voulez passer : ")
             print("\n" * 4)
-
             p2 = paires(colonne1J2, ligne1J2, colonne2J2, ligne2J2, tabCacher, tabJoueur, allPairesJ2, case[1])
 
             tabJ1 = p1[0]
@@ -97,17 +97,16 @@ def memory():
 
         affichage(tabCacher)
 
-        if allPairesJ1 == allPairesJ2 :
-            print("\n Bien joué à vous deux ! Vous êtes à égalité  ", pseudoJ1, "et", pseudoJ2, "\nVous avez fini en ", compteur, " tours." "\n")
-        elif allPairesJ2 > allPairesJ1 :
-            print("\n Bien joué ", pseudoJ2, " ! Tu as gagné avec  ", allPairesJ2, " points.",
-                    "Bien essayé ", pseudoJ1, " ! Tu était à ", allPairesJ1, " points.",
-                    "\nVous avez fini en ", compteur, " tours." "\n")
-        elif allPairesJ1 > allPairesJ2 :
-            print("\n Bien joué", pseudoJ1, " ! Tu as gagné avec  ", allPairesJ1, " points.",
-                    "Bien essayé ", pseudoJ2, " ! Tu était à ", allPairesJ2, " points.",
-                    "\nVous avez fini en ", compteur, " tours." "\n")
-        else :
+        if allPairesJ1 == allPairesJ2:
+            print("\n Bien joué à vous deux ! Vous êtes à égalité  ", pseudoJ1, "et", pseudoJ2, "\nVous avez fini en ",
+                  compteur, " tours." "\n")
+        elif allPairesJ2 > allPairesJ1:
+            print("\n Bien joué ", pseudoJ2, " ! Tu as gagné avec  ", allPairesJ2, " points.", "Bien essayé ", pseudoJ1,
+                  " ! Tu était à ", allPairesJ1, " points.", "\nVous avez fini en ", compteur, " tours." "\n")
+        elif allPairesJ1 > allPairesJ2:
+            print("\n Bien joué", pseudoJ1, " ! Tu as gagné avec  ", allPairesJ1, " points.", "Bien essayé ", pseudoJ2,
+                  " ! Tu était à ", allPairesJ2, " points.", "\nVous avez fini en ", compteur, " tours." "\n")
+        else:
             print("Fin de la game !")
 
     elif cmbJoueurs == "ordi":
@@ -150,7 +149,8 @@ def memory():
 
             tabOrdiTmp = computer[4]
 
-            p2 = paires(computer[0], computer[1], computer[2], computer[3], tabCacher, tabJoueur, allPairesOrdi, case[1])  # vérifie s'il y a des paires
+            p2 = paires(computer[0], computer[1], computer[2], computer[3], tabCacher, tabJoueur, allPairesOrdi,
+                        case[1])  # vérifie s'il y a des paires
 
             tabJoueur = p2[0]
 
@@ -164,26 +164,35 @@ def memory():
         affichage(tabCacher)
 
         if allPaires == allPairesOrdi:
-             print("\n Bine joué à vous deux ! Vous êtes à égalité  ", pseudo, "et memory Bot",
-                    "\nVous avez fini en ", compteur, " tours." "\n")
+            print("\n Bine joué à vous deux ! Vous êtes à égalité  ", pseudo, "et memory Bot", "\nVous avez fini en ",
+                  compteur, " tours." "\n")
         elif allPairesOrdi > allPaires:
-            print("\n Une victoire de plus pour memory Bot  ! Il as gagné avec  ", allPairesOrdi, " points.",
-                    "Bien essayé ", pseudo, " ! Tu était à ", allPaires, " points.",
-                    "\nVous avez fini en ", compteur, " tours." "\n")
+            print("\n Une victoire de plus pour memory Bot  ! Il as gagné avec ", allPairesOrdi, " paires retournés.",
+                  "Bien essayé ", pseudo, " ! Tu était à ", allPaires, " paires retournés.", "\nVous avez fini en ",
+                  compteur, " tours." "\n")
         elif allPaires > allPairesOrdi:
             print("\n Tu as triché", pseudo, " ! Tu as gagné avec  ", allPaires, " points.",
-                    "Memory Bot reviendra  ! Il était à ", allPairesOrdi, " points.",
-                    "\nVous avez fini en ", compteur, " tours." "\n")
+                  "Memory Bot reviendra  ! Il était à ", allPairesOrdi, " points.", "\nVous avez fini en ", compteur,
+                  " tours." "\n")
         else:
             print("Fin de la game !")
 
+
 def answer():  # à utiliser à chaque fois que le joueur ne répond pas correctement
-    """Affiche que la réponse effectuée est impossible"""
+    """
+    Aucun paramètres d'entrés
+    Affiche que la réponse effectuée est impossible
+    return : ¡ Réponse pas executable ¡
+    """
     print("\n ¡ Réponse pas executable ¡ \n")
 
 
 def start():
-    """Discours du debut avec règle et pseudo, réponse : la difficulter, le nombre de joueurs et leurs pseudos"""
+    """
+    Aucuns paramètres d'entrée
+    Discours du debut avec règle et pseudo la difficulter et choix mode de jeu
+    return : choix mode de jeu, difficulter et pseudo
+    """
 
     global reponseRegle
     continuer = True
@@ -193,9 +202,9 @@ def start():
 
         if reponseJeu == "oui":
             reponseRegle = str(input("\n Connaissez-vous les règles du memory ? \noui ou non : "))
-            if reponseRegle != "oui" and reponseRegle != "non" :
+            if reponseRegle != "oui" and reponseRegle != "non":
                 continuer = True
-            else :
+            else:
                 continuer = False
 
         elif reponseJeu == "non":
@@ -233,7 +242,7 @@ def start():
             pseudo = input("\n Quelle est votre pseudonyme jeune entrepreneur : ")
             print("\n  Que voulez vous comme difficulté ", pseudo, " ?")
             difficulter = str(input("facile, normal ou difficile : "))
-            if difficulter == "facile" or difficulter == "normal" or difficulter == "difficile" :
+            if difficulter == "facile" or difficulter == "normal" or difficulter == "difficile":
                 return ["solo", difficulter, pseudo]
             answer()
             continuer = True
@@ -244,7 +253,7 @@ def start():
             pseudoJ2 = input("\n Joueur 2 : ")
             print("\n  Que voulez vous comme difficulté ", pseudoJ1, " et ", pseudoJ2, " ? ")
             difficulter = str(input("facile, normal ou difficile : "))
-            if difficulter == "facile" or difficulter == "normal" or difficulter == "difficile" :
+            if difficulter == "facile" or difficulter == "normal" or difficulter == "difficile":
                 return ["duo", difficulter, pseudoJ1, pseudoJ2]
             answer()
             continuer = True
@@ -253,7 +262,7 @@ def start():
             pseudo = input("\n Quelle est votre pseudonyme jeune entrepreneur : ")
             print("\n  Que voulez vous comme difficulté ", pseudo, " ? ")
             difficulter = str(input("facile, normal ou difficile : "))
-            if difficulter == "facile" or difficulter == "normal" or difficulter == "difficile" :
+            if difficulter == "facile" or difficulter == "normal" or difficulter == "difficile":
                 return ["ordi", difficulter, pseudo]
             answer()
             continuer = True
@@ -263,7 +272,12 @@ def start():
 
 
 def paletteJoueur(difficulter):
-    """Créer un tableau de difficulté voulue pour qu'il soit afficher"""
+    """
+    Paramètres d'entrée : la difficulté du jeu
+    Créer un tableau de difficulté voulue pour qu'il soit afficher
+    return : un tableau a deux dimensions de la taille choisie par rapport à la difficulter et remplie.
+    """
+
     if difficulter == "facile":
         arrays = [["⬜"] * 4 for _ in range(3)]  # Il faut 6 paires
 
@@ -276,10 +290,14 @@ def paletteJoueur(difficulter):
 
 
 def paletteCacher(difficulter):
-    """Créer notre palette de départ en fonction de la difficulter choisie"""
+    """
+    Paramètre d'entrée : la difficulter du jeu
+    Créer notre palette de départ en fonction de la difficulter choisie
+    return : le tableau avec les réponses, avec le nombre de paires choisies et mélangés
+    """
 
-    icones = ['⚓', '⛳', '⛺', '⚽', '⛪', '⌛', '⛅', '🍀', '🌷', '🍊', '🍎', '🍒', '🍟',
-          '🎮', '🚀', '🚅', '🌌', '🐘', '🐶', '🐱', '🐤', '🌈', '👖', '👓', '❓']
+    icones = ['⚓', '⛳', '⛺', '⚽', '⛪', '⌛', '⛅', '🍀', '🌷', '🍊', '🍎', '🍒', '🍟', '🎮', '🚀', '🚅', '🌌', '🐘', '🐶', '🐱', '🐤',
+              '🌈', '👖', '👓', '❓']
 
     if difficulter == "facile":
         colonnes = 4
@@ -294,7 +312,8 @@ def paletteCacher(difficulter):
         lignes = 5
 
     shuffle(icones)  # Les icones sont placés aléatoirement
-    nombresIconesUtiles = (colonnes * lignes // 2) + (colonnes * lignes % 2)  # Calcul des icones utiles par rapport à la difficulté choisie
+    nombresIconesUtiles = (colonnes * lignes // 2) + (
+                colonnes * lignes % 2)  # Calcul des icones utiles par rapport à la difficulté choisie
     trueArray = [None] * nombresIconesUtiles  # sert à créer la taille du tableau en 1 dimension
 
     for nb in range(nombresIconesUtiles):
@@ -311,7 +330,12 @@ def paletteCacher(difficulter):
 
 
 def affichage(arrays):
-    """Sert à afficher le tableau joueur"""
+    """
+    Paramètre d'entrée : un tableau a deux dimensions avec des caractères str à l'intérieur
+    Sert à afficher le tableau joueur
+    return : l'affichage du tableau
+    """
+
     res = ""
     for i in range(len(arrays)):
         res += "\n"
@@ -323,6 +347,12 @@ def affichage(arrays):
 
 
 def verif(num_str):
+    """
+    Paramètre d'entrée : un str (un nombre de préférences)
+    Sert à transformer les nombre str en int
+    Si ce n'est pas possible, le nombre 1 est choisie
+    return : le nombre en integer voulue
+    """
     try:
         return int(num_str)
     except ValueError:
@@ -332,7 +362,11 @@ def verif(num_str):
 
 
 def choixJoueur(difficulter):
-    """Choix colonne de jeu en fonction de la difficulté"""
+    """
+    Paramètre d'entrée : la difficulté du jeu
+    Demande le choix colonne de jeu en fonction de la difficulté
+    return : le choix de la premiere colonne du joueur, le choix de la premiere ligne du joueur, le choix de la seconde colonne du joueur, le choix de la seconde ligne du joueur
+    """
     global choixColonne1, choixLigne1, choixColonne2, choixLigne2
     continuer = True
     while continuer:
@@ -369,9 +403,13 @@ def choixJoueur(difficulter):
 
 
 def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueur, tabComplet):
-    global Bool
+    """
+    Paramètres d'entrée : le choix de la premiere colonne du joueur, le choix de la premiere ligne du joueur, le choix de la seconde colonne du joueur, le choix de la seconde ligne du joueur, le tableau joueur et le tableau remplis
+    Affecte au jeu du joueur la case de la grille choisi (difficulté), en fonction du tableau complet
+    return : le tableau du joueur avec les changements effectués et bool
+    """
+
     Bool = -1
-    """Affecte au jeu du joueur la case de la grille choisi, en fonction du tableau complet"""
     if tabJoueur[choixLigne1][choixColonne1] != "⬜" and tabJoueur[choixLigne2][choixColonne2] != "⬜":  # vérifie si c'est deja en paire
         print("\n\n\nT'as déjà découvert ces cartes, dommage tu perd un tour. ")
         Bool = 4
@@ -381,30 +419,32 @@ def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueu
         print("\n\n\nT'as déjà découvert une de ces cartes, dommage tu perd un tour. ")
         Bool = 5
         return [tabJoueur, Bool]
-    else :
-        if tabJoueur[choixLigne1][choixColonne1] == tabComplet[choixLigne1][choixColonne1] and tabJoueur[choixLigne2][choixColonne2] == tabComplet[choixLigne2][choixColonne2] :
+    else:
+        if tabJoueur[choixLigne1][choixColonne1] == tabComplet[choixLigne1][choixColonne1] and tabJoueur[choixLigne2][choixColonne2] == tabComplet[choixLigne2][choixColonne2]:
             Bool = 0
             return [tabJoueur, Bool]
-        elif tabJoueur[choixLigne1][choixColonne1] == tabComplet[choixLigne1][choixColonne1] :
+        elif tabJoueur[choixLigne1][choixColonne1] == tabComplet[choixLigne1][choixColonne1]:
             tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
             Bool = 1
             return [tabJoueur, Bool]
-        elif tabJoueur[choixLigne2][choixColonne2] == tabComplet[choixLigne2][choixColonne2] :
+        elif tabJoueur[choixLigne2][choixColonne2] == tabComplet[choixLigne2][choixColonne2]:
             tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
             Bool = 2
             return [tabJoueur, Bool]
-        else :
+        else:
             tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
             tabJoueur[choixLigne2][choixColonne2] = tabComplet[choixLigne2][choixColonne2]
 
             Bool = 3
-            return [tabJoueur, Bool] # renvoie un tableau avec les choix du joueur
+            return [tabJoueur, Bool]  # renvoie un tableau avec les choix du joueur
 
 
 def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, tabJoueur, allPaires, Bool):
     """
+    Paramètre d'entrée : le choix de la premiere colonne du joueur, le choix de la premiere ligne du joueur, le choix de la seconde colonne du joueur, le choix de la seconde ligne du joueur, le tableau remplis, le tableau joueur, le nombre de paires deja découvertes et bool
     Permet de determiner si les case choisies par le joueur sont paires
     En prenant en compte la difficulté
+    return : le tableau du joueur avec les changements effectués et le nombre de paires deja effectués
     """
     paires = allPaires  # compteur de paire
     print(choixColonne1, choixLigne1, choixColonne2, choixLigne2, Bool)
@@ -416,7 +456,7 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
     elif Bool == 2:
         tabJoueur[choixLigne1][choixColonne1] = tabComplet[choixLigne1][choixColonne1]
         return [tabJoueur, paires]
-    elif Bool == 4 :
+    elif Bool == 4:
         return [tabJoueur, paires]
     elif Bool == 5:
         return [tabJoueur, paires]
@@ -436,13 +476,19 @@ def paires(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabComplet, t
         print(7)
     else:
         tabJoueur[choixLigne1][choixColonne1] = "⬜"
-        tabJoueur[choixLigne2][choixColonne2] = "⬜"  # ça genère un bug
+        tabJoueur[choixLigne2][choixColonne2] = "⬜"
         print(5)
     print(tabJoueur)
 
     return [tabJoueur, paires]
 
+
 def win(paires, difficulter):
+    """
+    Paramètres d'entrée : nombre de paires déjà trouvées par le joueur et difficulté du jeu
+    Cette fonction sert à définir si le joueur est gagnant en fonction de sa difficulté et grace a aux nombres de paires découvertes
+    return : False si c'est gagné sinon True
+    """
     global paireATrouver
     continuer = True
     while continuer:  # continue tant que le nombre de paires à trouver n'est pas trouvé
@@ -462,6 +508,11 @@ def win(paires, difficulter):
 
 
 def paireA2(tabJ1, tabJ2, tabJoueur):
+    """
+    Paramètres d'entrée : tableau du joueur 1, tableau du joueur 2 et tableau des 2 joueurs réunis de la partie précédente
+    Sert à assembler les deux tableaux joueur
+    return : tableau des 2 joueurs réunis
+    """
     for t in range(len(tabJ1)):
         for j in range(len(tabJ1[0])):
             if tabJ1[t][j] != "⬜":
@@ -472,9 +523,16 @@ def paireA2(tabJ1, tabJ2, tabJoueur):
                 tabJoueur[i][j] = tabJ2[i][j]
     return tabJoueur
 
+
 def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, tabOrdiTmp):
+    """
+    Paramètres d'entrée : difficulté de jeu, le choix de la premiere colonne du joueur, le choix de la premiere ligne du joueur, le choix de la seconde colonne du joueur, le choix de la seconde ligne du joueur, le tableau remplis, le tableau joueur et le tableau ordi
+    Joue comme un joueur, mais il a une tres bonne memoire, il enregistre toutes les cartes quil a joué et toutes les cartes jouées par le joueur
+    return :
+    """
 
     global colonneChoix1
+    
     if difficulter == "facile":
         colonnes = 4
         lignes = 3
@@ -487,7 +545,7 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
         colonnes = 7
         lignes = 5
 
-    if tabOrdiTmp == 1 :
+    if tabOrdiTmp == 1:
         tabOrdiTmp: list[list[str]] = paletteJoueur(difficulter)
         print(100)
 
@@ -499,16 +557,16 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
     print(tabOrdiTmp)
 
     for x in range(lignes):
-        for y in range(colonnes) :
+        for y in range(colonnes):
             if tabOrdiTmp[x][y] != "⬜":
                 for i in range(lignes):
                     for j in range(colonnes):
-                        if tabOrdiTmp[x][y] == tabOrdiTmp[i][j] :
-                            if i == x and j == y :
+                        if tabOrdiTmp[x][y] == tabOrdiTmp[i][j]:
+                            if i == x and j == y:
                                 continue
                             elif tabJoueur[i][j] == tabJoueur[x][y] and tabJoueur[x][y] != "⬜" and tabJoueur[i][j] != "⬜":
                                 continue
-                            else :
+                            else:
                                 print(20)
                                 print(i, j, colonne1, ligne1)
                                 print("\nChoix Ordinateur : ")
@@ -524,7 +582,7 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
     while continuer:
         ligneChoix1 += 1
         for colonneChoix1 in range(colonnes):
-            if tabOrdiTmp[ligneChoix1][colonneChoix1] == "⬜" :
+            if tabOrdiTmp[ligneChoix1][colonneChoix1] == "⬜":
                 print(4)
                 print("\nChoix Ordinateur : ")
                 print("\nChoisi une colonne : " + str(colonneChoix1 + 1))
@@ -537,13 +595,14 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
     while continuer:
         ligneChoix2 += 1
         for colonneChoix2 in range(colonnes):
-            if tabOrdiTmp[ligneChoix2][colonneChoix2] == "⬜" :
-                if ligneChoix2 != ligneChoix1 or colonneChoix2 != colonneChoix1 :
+            if tabOrdiTmp[ligneChoix2][colonneChoix2] == "⬜":
+                if ligneChoix2 != ligneChoix1 or colonneChoix2 != colonneChoix1:
                     print(tabOrdiTmp[ligneChoix2][colonneChoix2] == "⬜")
                     print("Choisi une autre colonne : " + str(colonneChoix2 + 1))
                     print("Et une autre ligne : " + str(ligneChoix2 + 1))
                     tabOrdiTmp[ligneChoix1][colonneChoix1] = tabCacher[ligneChoix1][colonneChoix1]
                     tabOrdiTmp[ligneChoix2][colonneChoix2] = tabCacher[ligneChoix2][colonneChoix2]
                     return [colonneChoix1, ligneChoix1, colonneChoix2, ligneChoix2, tabOrdiTmp]
+
 
 memory()
