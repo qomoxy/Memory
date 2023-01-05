@@ -412,7 +412,7 @@ def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueu
     return : le tableau du joueur avec les changements effectués et bool
     """
 
-    Bool = -1
+    Bool = -1 # Boolean : var int indice pour transmettre le choix de la fonction caseChoisie
     if tabJoueur[choixLigne1][choixColonne1] != "⬜" and tabJoueur[choixLigne2][choixColonne2] != "⬜":  # vérifie si c'est deja en paire
         print("\n\n\nT'as déjà découvert ces cartes, dommage tu perd un tour. ")
         Bool = 4
