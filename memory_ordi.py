@@ -3,7 +3,10 @@ from random import *  # pour mélanger le tableau
 
 def memory():
     """
-    Jeux du memory
+    Jeux du memory de luxe, c'est la fonction main du fichier. 
+    Elle gère l'ensemble du jeu.
+    Aucun return
+    Aucuns paramètres d'entrée
     """
 
     s = start()  # démarrage du memory
@@ -182,7 +185,7 @@ def answer():  # à utiliser à chaque fois que le joueur ne répond pas correct
     """
     Aucun paramètres d'entrés
     Affiche que la réponse effectuée est impossible
-    return : ¡ Réponse pas executable ¡
+    print : ¡ Réponse pas executable ¡
     """
     print("\n ¡ Réponse pas executable ¡ \n")
 
@@ -190,8 +193,8 @@ def answer():  # à utiliser à chaque fois que le joueur ne répond pas correct
 def start():
     """
     Aucuns paramètres d'entrée
-    Discours du debut avec règle et pseudo la difficulter et choix mode de jeu
-    return : choix mode de jeu, difficulter et pseudo
+    Discours du debut avec règle et pseudo la difficulter et choix mode de jeu.
+    return : choix du mode de jeu, difficulter et pseudo du ou des joueurs 
     """
 
     global reponseRegle
@@ -275,7 +278,7 @@ def paletteJoueur(difficulter):
     """
     Paramètres d'entrée : la difficulté du jeu
     Créer un tableau de difficulté voulue pour qu'il soit afficher
-    return : un tableau a deux dimensions de la taille choisie par rapport à la difficulter et remplie.
+    return : un tableau en deux dimensions de la taille choisie par rapport à la difficulter et remplie.
     """
 
     if difficulter == "facile":
@@ -526,7 +529,7 @@ def paireA2(tabJ1, tabJ2, tabJoueur):
 
 def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, tabOrdiTmp):
     """
-    Paramètres d'entrée : difficulté de jeu, le choix de la premiere colonne du joueur, le choix de la premiere ligne du joueur, le choix de la seconde colonne du joueur, le choix de la seconde ligne du joueur, le tableau remplis, le tableau joueur et le tableau ordi
+    Paramètres d'entrée : difficulté de jeu, le choix de la premiere colonne du joueur, le choix de la premiere ligne du joueur, le choix de la seconde colonne du joueur, le choix de la seconde ligne du joueur, le tableau remplis, le tableau joueur et le tableau ordi tmp
     Joue comme un joueur, mais il a une tres bonne memoire, il enregistre toutes les cartes quil a joué et toutes les cartes jouées par le joueur
     return :
     """
