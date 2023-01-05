@@ -1,5 +1,0 @@
-dogstring return ordi
-paires : bool, cest quoi ? a expliquer dans dogstring
-supprimer memory solo/duo et rename memory ordi en memory
-expliquer le code avec des # dans ordi ?
-meilleur dogstring memory() ?
