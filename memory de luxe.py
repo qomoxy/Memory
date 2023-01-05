@@ -3,7 +3,10 @@ from random import *  # pour mélanger le tableau
 
 def memory():
     """
-    Jeux du memory
+    Jeux du memory de luxe, c'est la fonction main du fichier. 
+    Elle gère l'ensemble du jeu.
+    Aucun return
+    Aucuns paramètres d'entrée
     """
 
     s = start()  # démarrage du memory
@@ -182,8 +185,8 @@ def answer():  # à utiliser à chaque fois que le joueur ne répond pas correct
 def start():
     """
     Aucuns paramètres d'entrée
-    Discours du debut avec règle et pseudo la difficulter et choix mode de jeu
-    return : choix mode de jeu, difficulter et pseudo
+    Discours du debut avec règle et pseudo la difficulter et choix mode de jeu.
+    return : choix du mode de jeu, difficulter et pseudo du ou des joueurs 
     """
 
     global reponseRegle
@@ -399,7 +402,7 @@ def caseChoisie(choixColonne1, choixLigne1, choixColonne2, choixLigne2, tabJoueu
     return : le tableau du joueur avec les changements effectués et bool
     """
 
-    Bool = -1
+    Bool = -1  # Boolean : var int indice pour transmettre le choix de la fonction caseChoisie
     if tabJoueur[choixLigne1][choixColonne1] != "⬜" and tabJoueur[choixLigne2][choixColonne2] != "⬜":  # vérifie si c'est deja en paire
         print("\n\n\nT'as déjà découvert ces cartes, dommage tu perd un tour. ")
         Bool = 4
@@ -512,7 +515,7 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
     """
     Paramètres d'entrée : difficulté de jeu, le choix de la premiere colonne du joueur, le choix de la premiere ligne du joueur, le choix de la seconde colonne du joueur, le choix de la seconde ligne du joueur, le tableau remplis, le tableau joueur et le tableau ordi
     Joue comme un joueur, mais il a une tres bonne memoire, il enregistre toutes les cartes quil a joué et toutes les cartes jouées par le joueur
-    return :
+    return :  les coordonnés (x, y) (colonnes, lignes) du premier choix de l'ordi, puis le deuxième choix (colonnes, lignes) et le tableau de l'ordi pour retenir les emojies. 
     """
 
     global colonneChoix1
