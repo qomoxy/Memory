@@ -531,7 +531,7 @@ def ordi(difficulter, colonne1, ligne1, colonne2, ligne2, tabCacher, tabJoueur, 
     """
     Paramètres d'entrée : difficulté de jeu, le choix de la premiere colonne du joueur, le choix de la premiere ligne du joueur, le choix de la seconde colonne du joueur, le choix de la seconde ligne du joueur, le tableau remplis, le tableau joueur et le tableau ordi tmp
     Joue comme un joueur, mais il a une tres bonne memoire, il enregistre toutes les cartes quil a joué et toutes les cartes jouées par le joueur
-    return :
+    return : les coordonnés (x, y) (colonnes, lignes) du premier choix de l'ordi, puis le deuxième choix (colonnes, lignes) et le tableau de l'ordi pour retenir les emojies. 
     """
 
     global colonneChoix1
