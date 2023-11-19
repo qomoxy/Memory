@@ -57,14 +57,14 @@ Voici les règles du memory :
 Le projet a été développer en python 3.11 sur Pycharm IDE.
 
   * 1. Installé NPM packages : (Dans le cmd)
-   ```sh
-   npm install
-   ```
+     ```sh
+     npm install
+     ```
    
   * 2. Installé le module random : 
-  ```sh
-  npm install random
-  ```
+    ```sh
+    npm install random
+    ```
 <!-- RULES -->
 ## Installation
 
