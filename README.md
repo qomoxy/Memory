@@ -30,12 +30,12 @@ Voici les différents mode jeu présent sur le mémory :
 * Multi joueurs (1 vs 1)
 * Contre un ordinateur
 
-Suite à ça vous pouvez choisir votre difficulté : 
+Suite à ça, vous pouvez choisir votre difficulté : 
 * Facile : 12 cartes (6 symboles)
 * Normale : 20 cartes (10 symboles)
 * Difficile : 35 cartes (18 symboles, 1 des symboles est présent qu'une fois)
 
-Le jeu se déroule dans la console python, les cartes et symboles sont présenté par des émojies. Nous vous conseillon d'utilisé Pycharm IDE, pour avoir un affiche descend. 
+Le jeu se déroule dans la console python, les cartes et symboles sont représenté par des émojies. Nous vous conseillon d'utilisé Pycharm IDE, pour avoir un affichage descend. 
 
 ## Règles
 
