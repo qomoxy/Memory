@@ -2,7 +2,7 @@
   <h3 align="center">Mémory De Luxe</h3>
 
   <p align="center">
-    Voici le tout ce que vous devez savoir sur le mémory.
+    Voici tout ce que vous devez savoir sur le mémory.
     <br/>
   </p>
 </div>
@@ -33,7 +33,7 @@ Voici les différents mode jeu présent sur le mémory :
 Suite à ça vous pouvez choisir votre difficulté : 
 * Facile : 12 cartes (6 symboles)
 * Normale : 20 cartes (10 symboles)
-* Difficile : 35 cartes (18 symboles, 1 des symboles est présent qu'un fois)
+* Difficile : 35 cartes (18 symboles, 1 des symboles est présent qu'une fois)
 
 Le jeu se déroule dans la console python, les cartes et symboles sont présenté par des émojies. Nous vous conseillon d'utilisé Pycharm IDE, pour avoir un affiche descend. 
 
