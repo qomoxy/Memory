@@ -1,35 +1,25 @@
 <div align="center">
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Mémory De Luxe</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-  <p/>
-<div/>
+    Voici le tout ce que vous devez savoir sur le mémory.
+    <br/>
+  </p>
+</div>
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Tables des matières</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+      <a href="#a-propos-du-projet">A propos du projet</a>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#regle">Règle</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
-## A propos du projet :
+## A propos du projet
 
 Notre projet est un mémory de luxe codé pour un projet scolaire de la psécialité NSI pour le 20 nomvembre 2023. (memory game in python 3.11)
 
@@ -47,7 +37,7 @@ Suite à ça vous pouvez choisir votre difficulté :
 
 Le jeu se déroule dans la console python, les cartes et symboles sont présenté par des émojies. Nous vous conseillon d'utilisé Pycharm IDE, pour avoir un affiche descend. 
 
-## Régles :
+## Règles
 
 Voici les règles du memory : 
 
