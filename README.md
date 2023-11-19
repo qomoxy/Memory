@@ -1,8 +1,9 @@
+<!-- HEAD -->
 <div align="center">
   <h3 align="center">Mémory De Luxe</h3>
 
   <p align="center">
-    Voici tout ce que vous devez savoir sur le mémory.
+    Voici tout ce que vous devez savoir sur le projet de mémory.
     <br/>
   </p>
 </div>
@@ -21,9 +22,9 @@
 <!-- ABOUT THE PROJECT -->
 ## A propos du projet
 
-Notre projet est un mémory de luxe codé pour un projet scolaire de la psécialité NSI pour le 20 nomvembre 2023. (memory game in python 3.11)
+Notre projet est un mémory de luxe (Memory) codé pour un projet scolaire de la psécialité NSI pour le 20 nomvembre 2023. 
 
-Nous avons commencé de 0, le but de ce projet était d'apprendre le python et les fonctions. 
+Nous avons commencé de 0, le but de ce projet était d'apprendre à coder en python et à utilisé les fonctions. 
 
 Voici les différents mode jeu présent sur le mémory : 
 * Solo
@@ -37,6 +38,7 @@ Suite à ça, vous pouvez choisir votre difficulté :
 
 Le jeu se déroule dans la console python, les cartes et symboles sont représenté par des émojies. Nous vous conseillon d'utilisé Pycharm IDE, pour avoir un affichage descend. 
 
+<!-- RULES -->
 ## Règles
 
 Voici les règles du memory : 
@@ -44,4 +46,45 @@ Voici les règles du memory :
 * Vous retournez deux cartes, si les symboles/images sont identiques, vous gagnez la paire constituée. 
 * Si les symboles/images sont différentes, vous les reposez faces cachées là où elles étaient. 
 * La partie est terminée lorsque toutes les cartes ont été assemblées par paires.
+
+<!-- Prerequisites -->
+## Prérequis
+
+Le projet à était developper en python 3.11 sur Pycharm IDE.
+
+  1. Install NPM packages : (Dans le cmd)
+   ```sh
+   npm install
+   ```
+   
+  2. Installé le module random : 
+  ```sh
+  npm install random
+  ```
+<!-- RULES -->
+## Installation
+
+_Pour installer le projet simplement grâce à github. Si vous prefere l'installer en .zip vous pouvez cliqué sur le bouton "<> Code" puis sur "Download ZIP"._
+
+* Clone le projets (reporitorie) : 
+   ```sh
+   git clone https://github.com/qomoxy/Memory.git
+   ```
+
+## Merci
+
+Merci d'être clement avec le projet. 
+
+Nous n'avons rien modifiè ou corriger à partir de la dead line, si vous joué au jeu vous risqué de tombé sur des erreurs/problèmes. 
+
+Vous avez le droits d'utilisé le code. 
+
+Fait pars : Quentin Goursaud (Qomoxy) et 
+
+Merci de votre temps, n'hésité pas à aller vois nos autres projets !
+
+   
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
