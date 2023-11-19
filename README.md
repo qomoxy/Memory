@@ -56,12 +56,12 @@ Voici les règles du memory :
 
 Le projet à était developper en python 3.11 sur Pycharm IDE.
 
-  1. Install NPM packages : (Dans le cmd)
+  * 1. Install NPM packages : (Dans le cmd)
    ```sh
    npm install
    ```
    
-  2. Installé le module random : 
+  * 2. Installé le module random : 
   ```sh
   npm install random
   ```
