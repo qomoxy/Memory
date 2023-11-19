@@ -1,3 +1,4 @@
+<a name="readme-top"></a>
 <!-- HEAD -->
 <div align="center">
   <h3 align="center">Mémory De Luxe</h3>
@@ -16,6 +17,9 @@
       <a href="#a-propos-du-projet">A propos du projet</a>
     </li>
     <li><a href="#règles">Règles</a></li>
+    <li><a href="#rprérequis">Prérequis</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#merci">Merci</a></li>
   </ol>
 </details>
 
