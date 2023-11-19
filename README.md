@@ -14,7 +14,7 @@
     <li>
       <a href="#a-propos-du-projet">A propos du projet</a>
     </li>
-    <li><a href="#règles">Règle</a></li>
+    <li><a href="#règles">Règles</a></li>
   </ol>
 </details>
 
