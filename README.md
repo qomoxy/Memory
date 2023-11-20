@@ -83,7 +83,7 @@ Nous n'avons rien modifié ou corriger à partir de la deade line, si vous jouez
 
 Vous avez les droits d'utiliser le code. 
 
-Fait par : Quentin Goursaud (Qomoxy) et 
+Fait par : Quentin Goursaud (Qomoxy) et Sebastien Dabert (Bessastien)
 
 Merci de votre temps, n'hésitez pas à aller voir nos autres projets !
 
