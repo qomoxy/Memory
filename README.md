@@ -28,7 +28,7 @@
 
 Notre projet est un mémory de luxe (Memory) codé pour un projet scolaire de la spécialité NSI pour le 20 novembre 2023. 
 
-Nous avons commencé de 0, le but de ce projet était d'apprendre à coder en python et ont utilisé les fonctions. 
+Nous avons commencé de 0, le but de ce projet était d'apprendre à coder en python et d'utiliser les fonctions. 
 
 Voici les différents modes jeux présents sur le mémory :
 * Solo
@@ -38,9 +38,9 @@ Voici les différents modes jeux présents sur le mémory :
 Suite à ça, vous pouvez choisir votre difficulté : 
 * Facile : 12 cartes (6 symboles)
 * Normale : 20 cartes (10 symboles)
-* Difficile : 35 cartes (18 symboles, 1 des symboles n'est présente qu'une fois)
+* Difficile : 35 cartes (18 symboles, 1 des symboles n'est présent qu'une fois)
 
-Le jeu se déroule dans la console python, les cartes et symboles sont représentés par des émojis. Nous vous conseillé d'utiliser Pycharm IDE, pour avoir un affichage descend.
+Le jeu se déroule dans la console python, les cartes et symboles sont représentés par des émojis. Nous vous conseillons d'utiliser Pycharm IDE, pour avoir un affichage descend.
 
 <!-- RULES -->
 ## Règles
