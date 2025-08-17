@@ -26,35 +26,35 @@
 <!-- ABOUT THE PROJECT -->
 ## A propos du projet
 
-Notre projet est un mémory de luxe (Memory) codé pour un projet scolaire de la spécialité NSI pour le 20 novembre 2023. 
+Notre projet est un memory de luxe (Memory) codé pour un projet scolaire de la spécialité NSI pour le 20 novembre 2023. 
 
-Nous avons commencé de 0, le but de ce projet était d'apprendre à coder en python et d'utiliser les fonctions. 
+Nous avons commencé de 0, le but de ce projet était d'apprendre à coder en Python et d'utiliser les fonctions. 
 
-Voici les différents modes jeux présents sur le mémory :
+Voici les différents modes de jeux présents sur le memory :
 * Solo
 * Multi joueurs (1 vs 1)
 * Contre un ordinateur
 
-Suite à ça, vous pouvez choisir votre difficulté : 
+Suite à cela, vous pouvez choisir votre difficulté : 
 * Facile : 12 cartes (6 symboles)
 * Normale : 20 cartes (10 symboles)
 * Difficile : 35 cartes (18 symboles, 1 des symboles n'est présent qu'une fois)
 
-Le jeu se déroule dans la console python, les cartes et symboles sont représentés par des émojis. Nous vous conseillons d'utiliser Pycharm IDE, pour avoir un affichage descend.
+Le jeu se déroule dans la console Python, les cartes et symboles sont représentés par des émojis. Nous vous conseillons d'utiliser Pycharm IDE, pour avoir un affichage decent.
 
 <!-- RULES -->
 ## Règles
 
 Voici les règles du memory : 
 
-* vous retournez deux cartes, si les symboles/images sont identiques, vous gagnez la paire constituée. 
-* Si les symboles/images sont différents, vous les reposez faces cachées là où elles étaient. 
+* Vous retournez deux cartes, si les symboles/images sont identiques, vous gagnez la paire constituée. 
+* Si les symboles/images sont différents, vous les reposez face cachée là où elles étaient.
 * La partie est terminée lorsque toutes les cartes ont été assemblées par paires.
   
 <!-- Prerequisites -->
 ## Prérequis
 
-Le projet a été développer en python 3.11 sur Pycharm IDE.
+Le projet a été développé en Python 3.11 sur Pycharm IDE.
 
   * 1. Installez NPM packages : (Dans le cmd)
      ```sh
@@ -68,7 +68,7 @@ Le projet a été développer en python 3.11 sur Pycharm IDE.
 <!-- RULES -->
 ## Installation
 
-_Pour installer le projet simplement grâce à Github. Si vous préférez l'installer en .zip vous pouvez cliquer sur le bouton "<> Code" puis sur "Download ZIP"._
+_Pour installer le projet simplement grâce à GitHub. Si vous préférez l'installer en .zip vous pouvez cliquer sur le bouton "<> Code" puis sur "Download ZIP"._
 
 * Clone le projet (repositorie) : 
    ```sh
@@ -77,9 +77,9 @@ _Pour installer le projet simplement grâce à Github. Si vous préférez l'inst
 
 ## Merci
 
-Merci d'être clement avec le projet. 
+Merci d'être clément avec le projet. 
 
-Nous n'avons rien modifié ou corriger à partir de la deade line, si vous jouez au jeu vous risqué de tomber sur des erreurs/problèmes. 
+Nous n'avons rien modifié ou corrigé à partir de la deadline, si vous jouez au jeu vous risquez de tomber sur des erreurs/problèmes. 
 
 Vous avez les droits d'utiliser le code. 
 
